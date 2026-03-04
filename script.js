@@ -23,7 +23,7 @@ const channelDefinitions = [
     accentHex: 0x2b6cd8,
     orbitRadius: 6.4,
     orbitSpeed: 0.2,
-    size: 1.16,
+    size: 1.52,
     initialAngle: 0.1,
     pitchOffset: 0.2,
     summary: "Capture high-intent demand instantly with structured campaign architecture.",
@@ -42,7 +42,7 @@ const channelDefinitions = [
     accentHex: 0x7f3ecb,
     orbitRadius: 6.8,
     orbitSpeed: 0.17,
-    size: 1.08,
+    size: 1.4,
     initialAngle: 2.2,
     pitchOffset: -0.15,
     summary: "Generate and scale demand with creatives, audience loops, and retargeting.",
@@ -61,7 +61,7 @@ const channelDefinitions = [
     accentHex: 0x1c7f70,
     orbitRadius: 6.2,
     orbitSpeed: 0.15,
-    size: 1.22,
+    size: 1.62,
     initialAngle: 4.45,
     pitchOffset: 0.12,
     summary: "Build durable organic growth with technical excellence and intent-led content.",
@@ -221,10 +221,10 @@ if (!canvas || typeof window.THREE === "undefined") {
   const cameraOrbit = {
     yaw: 0.38,
     pitch: 0.16,
-    radius: 19,
+    radius: 15.4,
     targetYaw: 0.38,
     targetPitch: 0.16,
-    targetRadius: 19,
+    targetRadius: 15.4,
   };
 
   const ambient = new window.THREE.AmbientLight(0x7ca9ff, 0.6);
@@ -409,16 +409,26 @@ if (!canvas || typeof window.THREE === "undefined") {
       color: channel.colorHex,
       map: texture,
       emissive: channel.accentHex,
-      emissiveIntensity: 0.35,
-      roughness: 0.42,
-      metalness: 0.25,
+      emissiveIntensity: 0.68,
+      roughness: 0.34,
+      metalness: 0.35,
     });
 
     const mesh = new window.THREE.Mesh(new window.THREE.SphereGeometry(channel.size, 42, 42), material);
+    const glowMesh = new window.THREE.Mesh(
+      new window.THREE.SphereGeometry(channel.size * 1.22, 28, 28),
+      new window.THREE.MeshBasicMaterial({
+        color: channel.colorHex,
+        transparent: true,
+        opacity: 0.2,
+        depthWrite: false,
+        blending: window.THREE.AdditiveBlending,
+      })
+    );
 
     const ring = new window.THREE.Mesh(
       new window.THREE.TorusGeometry(channel.size * 1.34, channel.size * 0.08, 12, 88),
-      new window.THREE.MeshBasicMaterial({ color: channel.colorHex, transparent: true, opacity: 0 })
+      new window.THREE.MeshBasicMaterial({ color: channel.colorHex, transparent: true, opacity: 0.08 })
     );
     ring.rotation.x = Math.PI * 0.5;
 
@@ -439,7 +449,7 @@ if (!canvas || typeof window.THREE === "undefined") {
     mesh.userData = { type: "planet", id: channel.id };
     clickTargets.push(mesh);
 
-    group.add(mesh, ring);
+    group.add(mesh, glowMesh, ring);
     scene.add(group);
 
     const connector = new window.THREE.Line(
@@ -454,6 +464,7 @@ if (!canvas || typeof window.THREE === "undefined") {
       channel,
       group,
       mesh,
+      glowMesh,
       ring,
       label,
       angle: channel.initialAngle,
@@ -721,7 +732,7 @@ if (!canvas || typeof window.THREE === "undefined") {
     "wheel",
     (event) => {
       cameraOrbit.targetRadius += event.deltaY * 0.008;
-      cameraOrbit.targetRadius = Math.max(12, Math.min(28, cameraOrbit.targetRadius));
+      cameraOrbit.targetRadius = Math.max(10, Math.min(24, cameraOrbit.targetRadius));
     },
     { passive: true }
   );
@@ -744,7 +755,8 @@ if (!canvas || typeof window.THREE === "undefined") {
       planet.mesh.rotation.x += deltaTime * 0.24;
 
       const selected = state.selectedChannels.has(planet.channel.id);
-      planet.ring.material.opacity = selected ? 0.45 + Math.sin(elapsedTime * 4) * 0.18 : 0;
+      planet.glowMesh.material.opacity = selected ? 0.28 + Math.sin(elapsedTime * 5 + radius) * 0.08 : 0.18;
+      planet.ring.material.opacity = selected ? 0.68 + Math.sin(elapsedTime * 4) * 0.2 : 0.08;
       planet.ring.rotation.z += deltaTime * 0.7;
 
       const connector = connectors.get(planet.channel.id);
