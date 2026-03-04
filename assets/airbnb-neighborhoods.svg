@@ -17,7 +17,7 @@
   <text x="244" y="128" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="1">CAMPAIGN</text>
   <text x="84" y="340" fill="#ffffff" font-family="Arial, sans-serif" font-size="112" font-weight="800" letter-spacing="2">AIRBNB</text>
   <text x="84" y="435" fill="#ffffff" fill-opacity="0.92" font-family="Arial, sans-serif" font-size="58" font-weight="600" letter-spacing="1">NEIGHBORHOODS</text>
-  <rect x="84" y="520" width="560" height="120" rx="20" fill="#ffffff" fill-opacity="0.14" />
-  <text x="124" y="596" fill="#ffffff" font-family="Arial, sans-serif" font-size="54" font-weight="700">+63% booking intent leads</text>
+  <rect x="84" y="520" width="980" height="120" rx="20" fill="#ffffff" fill-opacity="0.14" />
+  <text x="124" y="596" fill="#ffffff" font-family="Arial, sans-serif" font-size="50" font-weight="700">+63% booking intent leads</text>
   <text x="84" y="810" fill="#ffffff" fill-opacity="0.72" font-family="Arial, sans-serif" font-size="28" letter-spacing="1.5">WORLDIN PERFORMANCE CASE</text>
 </svg>
