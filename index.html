@@ -3,30 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>worldin.net | Futuristic Growth Engine for SEO, Google Ads, Meta Ads</title>
+    <title>worldin.net | Three.js Growth Orbit Game</title>
     <meta
       name="description"
-      content="worldin.net builds a unified growth engine that combines SEO, Google Ads, and Facebook/Instagram Ads into one measurable system for leads and revenue growth."
+      content="Interactive three.js growth map: connect SEO, Google Ads, and Meta Ads planets to launch the unified revenue engine for your business."
     />
     <meta
       name="keywords"
-      content="SEO agency, Google Ads management, Meta Ads agency, Facebook Ads, Instagram Ads, growth marketing, digital strategy"
+      content="three.js marketing site, SEO strategy, Google Ads, Meta Ads, FB ads, Instagram ads, growth marketing"
     />
     <meta name="author" content="worldin.net" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="worldin.net | Futuristic SEO + Paid Media Growth" />
+    <meta property="og:title" content="worldin.net | Three.js Growth Orbit Game" />
     <meta
       property="og:description"
-      content="A future-ready growth system connecting SEO, Google Ads, and Meta Ads for predictable business impact."
+      content="Play the growth mission: connect SEO, Google Ads, and Meta Ads planets to activate a unified marketing engine."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://worldin.net" />
     <meta property="og:image" content="https://worldin.net/og-image.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="worldin.net | Futuristic SEO + Paid Media Growth" />
+    <meta name="twitter:title" content="worldin.net | Three.js Growth Orbit Game" />
     <meta
       name="twitter:description"
-      content="Book an audit and get a strategy that aligns SEO, Google Ads, and Facebook/Instagram Ads into one engine."
+      content="Explore services and case stats through an interactive space game built on three.js."
     />
     <meta name="twitter:image" content="https://worldin.net/og-image.svg" />
     <link rel="canonical" href="https://worldin.net" />
@@ -53,557 +53,118 @@
     </script>
   </head>
   <body>
-    <canvas id="cosmos-canvas" aria-hidden="true"></canvas>
-    <div class="grid-overlay" aria-hidden="true"></div>
+    <canvas id="space-canvas" aria-hidden="true"></canvas>
 
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="#home" class="logo" aria-label="worldin.net home">
-          <span class="logo-world">world</span><span class="logo-in">in</span><span class="logo-net">.net</span>
-        </a>
+    <header class="topbar">
+      <a href="#" class="logo" aria-label="worldin.net home">
+        <span class="logo-world">world</span><span class="logo-in">in</span><span class="logo-net">.net</span>
+      </a>
 
-        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
-
-        <nav class="main-nav" id="main-nav">
-          <a href="#services">Services</a>
-          <a href="#engine">Engine</a>
-          <a href="#cases">Before / After</a>
-          <a href="#audit">Audit Form</a>
-        </nav>
-
-        <a href="#audit" class="btn btn-primary btn-nav">Book Strategy Call</a>
+      <div class="topbar-actions">
+        <button id="reset-mission" class="btn btn-ghost" type="button">Reset Mission</button>
+        <button id="open-audit" class="btn btn-primary" type="button">Book Audit</button>
       </div>
     </header>
 
-    <main id="home">
-      <section class="hero section">
-        <div class="container hero-layout">
-          <div class="hero-content">
-            <p class="eyebrow" data-reveal>Future-Ready Performance Marketing</p>
-            <h1 data-reveal>
-              <span class="line">We build your growth system</span>
-              <span class="line">with SEO + Google Ads +</span>
-              <span class="line">Facebook / Instagram Ads</span>
-            </h1>
-            <p class="hero-copy" data-reveal>
-              worldin.net connects every channel into one machine: search visibility, paid demand capture,
-              conversion-focused landing pages, and real business measurement. You do not buy isolated traffic.
-              You build a scalable revenue engine.
-            </p>
+    <main class="hud">
+      <section class="panel mission-panel">
+        <p class="panel-eyebrow">Mission Control</p>
+        <h1>Connect All 3 Growth Planets</h1>
+        <p>
+          Click the planets to inspect each channel. When <strong>SEO</strong>, <strong>Google Ads</strong>, and
+          <strong>Meta Ads</strong> are connected, the rocket launches and your unified acquisition engine activates.
+        </p>
 
-            <div class="hero-actions" data-reveal>
-              <a href="#audit" class="btn btn-primary">Get Free Growth Audit</a>
-              <a href="#cases" class="btn btn-ghost">View Before / After Cases</a>
-            </div>
+        <div class="channel-status" id="channel-status"></div>
 
-            <div class="hero-kpis" data-reveal>
-              <article>
-                <h3>+187%</h3>
-                <p>Median growth of qualified organic sessions</p>
-              </article>
-              <article>
-                <h3>-41%</h3>
-                <p>Average CPL reduction after channel unification</p>
-              </article>
-              <article>
-                <h3>4.1x</h3>
-                <p>Blended ROAS from synchronized paid campaigns</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="hero-panel" data-reveal>
-            <p class="panel-title">Neural Growth Control</p>
-            <div class="signal-grid">
-              <div class="signal-item">
-                <span>SEO Rankings</span>
-                <strong>Top-3 share +68%</strong>
-              </div>
-              <div class="signal-item">
-                <span>Google Ads Intent</span>
-                <strong>Search CVR +39%</strong>
-              </div>
-              <div class="signal-item">
-                <span>Meta Performance</span>
-                <strong>CTR +57%</strong>
-              </div>
-              <div class="signal-item">
-                <span>Landing Conversion</span>
-                <strong>Lead rate +44%</strong>
-              </div>
-            </div>
-
-            <div class="live-analytics" id="live-analytics">
-              <div class="live-head">
-                <h3>Live Analytics Today</h3>
-                <span class="live-stream"><span class="live-dot" aria-hidden="true">dot</span>Live stream</span>
-              </div>
-
-              <div class="live-grid">
-                <article class="live-item">
-                  <span>Ad Impressions</span>
-                  <strong class="live-value" data-live-key="impressions">0</strong>
-                </article>
-                <article class="live-item">
-                  <span>Website Clicks</span>
-                  <strong class="live-value" data-live-key="clicks">0</strong>
-                </article>
-                <article class="live-item">
-                  <span>New Leads</span>
-                  <strong class="live-value" data-live-key="leads">0</strong>
-                </article>
-                <article class="live-item">
-                  <span>Audit Bookings</span>
-                  <strong class="live-value" data-live-key="bookings">0</strong>
-                </article>
-                <article class="live-item">
-                  <span>Ad Spend Today</span>
-                  <strong class="live-value" data-live-key="spend">0</strong>
-                </article>
-                <article class="live-item">
-                  <span>Pipeline Value</span>
-                  <strong class="live-value" data-live-key="pipeline">0</strong>
-                </article>
-              </div>
-
-              <p class="live-updated" data-live-updated>Updated just now</p>
-            </div>
-            <div class="scanline" aria-hidden="true"></div>
-          </div>
+        <div class="status-box" id="mission-status">
+          <h2>Status: Awaiting Channel Connection</h2>
+          <p>Select at least one planet to start the mission.</p>
         </div>
+
+        <ul class="tips">
+          <li>Click a planet to open service strategy details.</li>
+          <li>Click comet labels to view business case statistics before/after.</li>
+          <li>Rotate view: drag mouse (desktop) or one-finger drag (touch).</li>
+        </ul>
       </section>
 
-      <section class="section services" id="services">
-        <div class="container">
-          <div class="section-head" data-reveal>
-            <p class="eyebrow">Core Services</p>
-            <h2>Everything needed to dominate search and paid acquisition</h2>
-          </div>
-
-          <div class="service-grid">
-            <article class="service-card" data-reveal>
-              <p class="service-tag">01 - SEO</p>
-              <h3>SEO for Top Positions</h3>
-              <p>
-                Technical SEO, semantic architecture, content clusters, internal linking, and authority growth built for
-                commercial rankings and long-term traffic value.
-              </p>
-              <ul>
-                <li>Technical audit + indexing roadmap</li>
-                <li>Intent-driven content architecture</li>
-                <li>Entity and authority strengthening</li>
-              </ul>
-            </article>
-
-            <article class="service-card" data-reveal>
-              <p class="service-tag">02 - Google Ads</p>
-              <h3>Google Ads Performance</h3>
-              <p>
-                Search, Performance Max, remarketing, and budget orchestration aligned to your funnel economics and
-                business goals.
-              </p>
-              <ul>
-                <li>Campaign logic by intent stage</li>
-                <li>Bid strategy and negative term management</li>
-                <li>Creative and landing page tests</li>
-              </ul>
-            </article>
-
-            <article class="service-card" data-reveal>
-              <p class="service-tag">03 - Meta Ads</p>
-              <h3>Facebook & Instagram Ads</h3>
-              <p>
-                Demand generation and retargeting loops with creative testing systems that improve audience quality and
-                conversion predictability.
-              </p>
-              <ul>
-                <li>Audience segmentation and hooks</li>
-                <li>Video and static creative matrix</li>
-                <li>Retention and reactivation cycles</li>
-              </ul>
-            </article>
-          </div>
-        </div>
+      <section class="panel info-panel" id="info-panel">
+        <p class="panel-eyebrow">Channel Briefing</p>
+        <h2 id="info-title">Select a Planet</h2>
+        <p id="info-subtitle">Choose SEO, Google Ads, or Meta Ads to inspect service details.</p>
+        <div id="info-content" class="info-content"></div>
       </section>
 
-      <section class="section engine" id="engine">
-        <div class="container engine-shell">
-          <div class="section-head" data-reveal>
-            <p class="eyebrow">Unified Mechanism</p>
-            <h2>How we connect all channels into one growth architecture</h2>
-          </div>
-
-          <div class="engine-layout">
-            <div class="engine-visual" data-reveal>
-              <canvas class="reactor-canvas" id="reactor-canvas" aria-hidden="true"></canvas>
-              <div class="engine-core">Growth Reactor</div>
-              <div class="engine-node n1">SEO Intent Data</div>
-              <div class="engine-node n2">Google Query Signals</div>
-              <div class="engine-node n3">Meta Creative Feedback</div>
-              <div class="engine-node n4">Analytics + CRO</div>
-            </div>
-
-            <div class="engine-steps">
-              <article data-reveal>
-                <span>01</span>
-                <h3>Audit and Baseline Capture</h3>
-                <p>We map rankings, paid spend, tracking quality, conversion flow, and content performance.</p>
-              </article>
-              <article data-reveal>
-                <span>02</span>
-                <h3>Single Intent Map</h3>
-                <p>One shared model connects SEO clusters, Google Ads groups, and Meta audiences.</p>
-              </article>
-              <article data-reveal>
-                <span>03</span>
-                <h3>Cross-Channel Synchronization</h3>
-                <p>Paid search terms shape content priorities, and SEO insights sharpen campaign targeting.</p>
-              </article>
-              <article data-reveal>
-                <span>04</span>
-                <h3>Conversion Layer Upgrade</h3>
-                <p>Landing pages, offer logic, speed, and UX are optimized to increase lead quality.</p>
-              </article>
-              <article data-reveal>
-                <span>05</span>
-                <h3>Measurement and Scale</h3>
-                <p>Unified dashboard: rankings, qualified sessions, CPL, ROAS, and pipeline contribution.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cases" id="cases">
-        <div class="container">
-          <div class="section-head" data-reveal>
-            <p class="eyebrow">Before / After Cases</p>
-            <h2>Real sectors. Real gains. Monthly growth visibility.</h2>
-          </div>
-
-          <div class="cases-shell" data-reveal>
-            <button class="cases-nav" id="cases-prev" type="button" aria-label="Previous case">Prev</button>
-
-            <div class="cases-window" id="cases-window">
-              <div class="cases-track">
-                <article class="case-card">
-                  <header>
-                    <div>
-                      <h3>Neighborhood Cafe</h3>
-                      <p>Local SEO + Google Search + Instagram Ads</p>
-                    </div>
-                    <span class="sector-pill">Cafe</span>
-                  </header>
-
-                  <div class="case-columns">
-                    <div>
-                      <h4>Before</h4>
-                      <ul>
-                        <li>Low local map visibility for brunch demand</li>
-                        <li>Only 28 reservations monthly from website</li>
-                        <li>No paid retargeting for repeat visitors</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4>After</h4>
-                      <ul>
-                        <li>Top-3 local pack positions for core keywords</li>
-                        <li>79 reservations monthly (+182%)</li>
-                        <li>-34% cost per booking from paid channels</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="chart-box">
-                    <p>Monthly reservations trend (before vs after)</p>
-                    <svg class="growth-chart" viewBox="0 0 620 230" data-before="28,29,30,31,33,34" data-after="32,38,47,57,68,79" role="img" aria-label="Monthly growth chart for cafe"></svg>
-                    <div class="chart-months">
-                      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-                    </div>
-                    <div class="chart-legend">
-                      <span><span class="legend-swatch legend-before" aria-hidden="true">before</span>Before</span>
-                      <span><span class="legend-swatch legend-after" aria-hidden="true">after</span>After</span>
-                    </div>
-                  </div>
-
-                  <footer>
-                    <span>Map actions: 410 -> 1,060</span>
-                    <span>Booking rate: 2.8% -> 5.9%</span>
-                  </footer>
-                </article>
-
-                <article class="case-card">
-                  <header>
-                    <div>
-                      <h3>Fast Delivery Service</h3>
-                      <p>Search Ads + Meta Prospecting + SEO Landing Pages</p>
-                    </div>
-                    <span class="sector-pill">Delivery</span>
-                  </header>
-
-                  <div class="case-columns">
-                    <div>
-                      <h4>Before</h4>
-                      <ul>
-                        <li>Unstable order demand by week</li>
-                        <li>High CAC in competitive time windows</li>
-                        <li>Weak first-to-second order flow</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4>After</h4>
-                      <ul>
-                        <li>+96% weekly order growth</li>
-                        <li>-29% customer acquisition cost</li>
-                        <li>+52% repeat orders from remarketing</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="chart-box">
-                    <p>Monthly qualified order leads (before vs after)</p>
-                    <svg class="growth-chart" viewBox="0 0 620 230" data-before="180,188,194,198,206,213" data-after="190,224,260,296,329,353" role="img" aria-label="Monthly growth chart for delivery"></svg>
-                    <div class="chart-months">
-                      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-                    </div>
-                    <div class="chart-legend">
-                      <span><span class="legend-swatch legend-before" aria-hidden="true">before</span>Before</span>
-                      <span><span class="legend-swatch legend-after" aria-hidden="true">after</span>After</span>
-                    </div>
-                  </div>
-
-                  <footer>
-                    <span>Orders / week: 180 -> 353</span>
-                    <span>ROAS: 2.1x -> 3.8x</span>
-                  </footer>
-                </article>
-
-                <article class="case-card">
-                  <header>
-                    <div>
-                      <h3>Local Home Goods Store</h3>
-                      <p>Local SEO + Google Ads + Facebook Catalog</p>
-                    </div>
-                    <span class="sector-pill">Local Store</span>
-                  </header>
-
-                  <div class="case-columns">
-                    <div>
-                      <h4>Before</h4>
-                      <ul>
-                        <li>Weak map and category ranking presence</li>
-                        <li>Inconsistent weekday traffic and calls</li>
-                        <li>Low blended return from paid traffic</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4>After</h4>
-                      <ul>
-                        <li>+74% local visit intent actions</li>
-                        <li>+67% online orders from local pages</li>
-                        <li>-41% blended cost per lead</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="chart-box">
-                    <p>Monthly qualified local leads (before vs after)</p>
-                    <svg class="growth-chart" viewBox="0 0 620 230" data-before="120,118,124,129,130,136" data-after="126,152,178,206,232,257" role="img" aria-label="Monthly growth chart for local store"></svg>
-                    <div class="chart-months">
-                      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-                    </div>
-                    <div class="chart-legend">
-                      <span><span class="legend-swatch legend-before" aria-hidden="true">before</span>Before</span>
-                      <span><span class="legend-swatch legend-after" aria-hidden="true">after</span>After</span>
-                    </div>
-                  </div>
-
-                  <footer>
-                    <span>Local pack share: 18% -> 57%</span>
-                    <span>Revenue: +44% in 6 months</span>
-                  </footer>
-                </article>
-
-                <article class="case-card">
-                  <header>
-                    <div>
-                      <h3>Urban Dance Studio</h3>
-                      <p>SEO Program Pages + Search Ads + Instagram Video Funnel</p>
-                    </div>
-                    <span class="sector-pill">Dance Studio</span>
-                  </header>
-
-                  <div class="case-columns">
-                    <div>
-                      <h4>Before</h4>
-                      <ul>
-                        <li>Low trial class lead flow from website</li>
-                        <li>Unfilled weekday classes</li>
-                        <li>Creative fatigue in social campaigns</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4>After</h4>
-                      <ul>
-                        <li>+133% trial class bookings</li>
-                        <li>-36% cost per lead after funnel rebuild</li>
-                        <li>+26% retention through segmented campaigns</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="chart-box">
-                    <p>Monthly trial class leads (before vs after)</p>
-                    <svg class="growth-chart" viewBox="0 0 620 230" data-before="46,48,49,50,52,54" data-after="51,63,78,90,99,107" role="img" aria-label="Monthly growth chart for dance studio"></svg>
-                    <div class="chart-months">
-                      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-                    </div>
-                    <div class="chart-legend">
-                      <span><span class="legend-swatch legend-before" aria-hidden="true">before</span>Before</span>
-                      <span><span class="legend-swatch legend-after" aria-hidden="true">after</span>After</span>
-                    </div>
-                  </div>
-
-                  <footer>
-                    <span>Leads / month: 46 -> 107</span>
-                    <span>Class fill rate: 42% -> 81%</span>
-                  </footer>
-                </article>
-              </div>
-            </div>
-
-            <button class="cases-nav" id="cases-next" type="button" aria-label="Next case">Next</button>
-          </div>
-
-          <div class="cases-pagination" id="cases-pagination" data-reveal>
-            <button class="is-active" type="button" data-index="0">Cafe</button>
-            <button type="button" data-index="1">Delivery</button>
-            <button type="button" data-index="2">Local Store</button>
-            <button type="button" data-index="3">Dance Studio</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section value-grid">
-        <div class="container value-layout">
-          <article data-reveal>
-            <h3>Technical SEO Foundation</h3>
-            <p>
-              We fix crawlability, Core Web Vitals, indexation logic, schema structure, and internal linking so search
-              engines can trust and scale your pages.
-            </p>
-          </article>
-          <article data-reveal>
-            <h3>Intent-Led Creative System</h3>
-            <p>
-              We use search query data and audience feedback loops to craft ad concepts and content that match true
-              buying intent.
-            </p>
-          </article>
-          <article data-reveal>
-            <h3>Single KPI Command Center</h3>
-            <p>
-              One unified reporting model connects rankings, traffic quality, CPL, ROAS, and lead-to-revenue impact.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section audit" id="audit">
-        <div class="container audit-shell">
-          <div class="audit-copy" data-reveal>
-            <p class="eyebrow">Book Your Audit</p>
-            <h2>Request a growth audit and strategy architecture for your market</h2>
-            <p>
-              Send your details and we will map your current SEO and paid acquisition model. You will get a practical
-              roadmap with priorities, expected impact, and channel budget logic.
-            </p>
-            <div class="audit-tags">
-              <span>SEO Audit</span>
-              <span>Google Ads Audit</span>
-              <span>Meta Ads Audit</span>
-              <span>Growth Blueprint</span>
-            </div>
-          </div>
-
-          <form id="audit-form" class="audit-form" novalidate data-reveal>
-            <label>
-              Full Name
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              Work Email
-              <input type="email" name="email" required />
-            </label>
-            <label>
-              Website URL
-              <input type="url" name="website" placeholder="https://" required />
-            </label>
-            <label>
-              Monthly Marketing Budget
-              <select name="budget" required>
-                <option value="">Select budget range</option>
-                <option>Up to $2,000</option>
-                <option>$2,000 - $5,000</option>
-                <option>$5,000 - $15,000</option>
-                <option>$15,000+</option>
-              </select>
-            </label>
-            <label>
-              Primary Goal
-              <select name="goal" required>
-                <option value="">Select primary goal</option>
-                <option>Increase qualified leads</option>
-                <option>Scale e-commerce revenue</option>
-                <option>Improve ROAS / lower CPL</option>
-                <option>Reach top SEO positions</option>
-              </select>
-            </label>
-            <label>
-              Notes (optional)
-              <textarea name="message" rows="4" placeholder="Describe your market, challenge, and target geography"></textarea>
-            </label>
-
-            <label class="consent">
-              <input type="checkbox" name="consent" required />
-              I agree to the processing of my data for audit and strategy communication.
-            </label>
-
-            <button type="submit" class="btn btn-primary">Send Strategy Request</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+      <section class="panel case-panel" id="case-panel">
+        <p class="panel-eyebrow">Business Comet Data</p>
+        <h2 id="case-title">Click Any Comet</h2>
+        <p id="case-subtitle">Comets are real business sectors. Tap one for monthly before/after outcomes.</p>
+        <div id="case-content" class="case-content"></div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-wrap">
-        <div>
-          <a href="#home" class="logo">
-            <span class="logo-world">world</span><span class="logo-in">in</span><span class="logo-net">.net</span>
-          </a>
-          <p>Future-focused growth partner for SEO and paid media performance.</p>
-        </div>
-        <div>
-          <h3>Focus Areas</h3>
-          <ul>
-            <li>SEO Strategy and Execution</li>
-            <li>Google Ads Management</li>
-            <li>Facebook and Instagram Ads</li>
-            <li>Conversion Optimization</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Contact</h3>
-          <ul>
-            <li>Email: hello@worldin.net</li>
-            <li>Website: worldin.net</li>
-            <li>Global Remote Team</li>
-          </ul>
-        </div>
+    <div class="legend">
+      <span><span class="dot dot-google">g</span>Google Ads Planet</span>
+      <span><span class="dot dot-meta">m</span>Meta Planet</span>
+      <span><span class="dot dot-seo">s</span>SEO Planet</span>
+      <span><span class="dot dot-comet">c</span>Business Comets</span>
+    </div>
+
+    <div class="modal hidden" id="audit-modal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="modal-close" id="close-audit" type="button" aria-label="Close audit form">Close</button>
+        <p class="panel-eyebrow">Book Your Audit</p>
+        <h2>Request SEO + Google Ads + Meta Growth Strategy</h2>
+
+        <form id="audit-form" class="audit-form" novalidate>
+          <label>
+            Full Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Work Email
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Website URL
+            <input type="url" name="website" placeholder="https://" required />
+          </label>
+          <label>
+            Monthly Budget
+            <select name="budget" required>
+              <option value="">Select budget range</option>
+              <option>Up to $2,000</option>
+              <option>$2,000 - $5,000</option>
+              <option>$5,000 - $15,000</option>
+              <option>$15,000+</option>
+            </select>
+          </label>
+          <label>
+            Main Goal
+            <select name="goal" required>
+              <option value="">Select goal</option>
+              <option>Increase qualified leads</option>
+              <option>Scale e-commerce revenue</option>
+              <option>Improve ROAS and lower CPL</option>
+              <option>Reach top SEO positions</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea name="message" rows="4" placeholder="Tell us your niche, target location, and challenge"></textarea>
+          </label>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" required />
+            I agree to the processing of my data for audit and strategy communication.
+          </label>
+
+          <button type="submit" class="btn btn-primary">Send Request</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
-      <p class="copyright">(c) 2026 worldin.net. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <script src="script.js"></script>
