@@ -181,6 +181,15 @@ main {
   gap: 0.7rem;
 }
 
+.manifesto-head {
+  margin: 0;
+  grid-column: 1 / -1;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  line-height: 1.35;
+}
+
 .manifesto-item {
   border: 2px solid #2b2b2b;
   border-radius: 14px;
@@ -201,6 +210,14 @@ main {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.manifesto-note {
+  margin: 0;
+  grid-column: 1 / -1;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #bdbdbd;
 }
 
 .services {
