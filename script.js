@@ -40,6 +40,106 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("visible"));
 }
 
+const casesViewport = document.getElementById("cases-viewport");
+
+if (casesViewport) {
+  const slides = Array.from(casesViewport.querySelectorAll(".case-slide"));
+  const prevButton = document.getElementById("cases-prev");
+  const nextButton = document.getElementById("cases-next");
+  const dotButtons = Array.from(document.querySelectorAll("#cases-dots button"));
+  let currentIndex = 0;
+  let scrollSyncTimer = null;
+
+  const updateControls = () => {
+    if (prevButton) {
+      prevButton.disabled = currentIndex <= 0;
+    }
+
+    if (nextButton) {
+      nextButton.disabled = currentIndex >= slides.length - 1;
+    }
+
+    dotButtons.forEach((dot, index) => {
+      const isActive = index === currentIndex;
+      dot.classList.toggle("is-active", isActive);
+      dot.setAttribute("aria-pressed", String(isActive));
+    });
+  };
+
+  const goToSlide = (index, behavior = "smooth") => {
+    if (!slides.length) {
+      return;
+    }
+
+    const safeIndex = Math.max(0, Math.min(index, slides.length - 1));
+    currentIndex = safeIndex;
+
+    casesViewport.scrollTo({
+      left: slides[safeIndex].offsetLeft,
+      behavior,
+    });
+
+    updateControls();
+  };
+
+  const syncIndexFromScroll = () => {
+    if (!slides.length) {
+      return;
+    }
+
+    const left = casesViewport.scrollLeft;
+    let nearestIndex = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    slides.forEach((slide, index) => {
+      const distance = Math.abs(slide.offsetLeft - left);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    });
+
+    if (nearestIndex !== currentIndex) {
+      currentIndex = nearestIndex;
+      updateControls();
+    }
+  };
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      goToSlide(currentIndex - 1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      goToSlide(currentIndex + 1);
+    });
+  }
+
+  dotButtons.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number.parseInt(dot.dataset.index || "0", 10);
+      goToSlide(index);
+    });
+  });
+
+  casesViewport.addEventListener(
+    "scroll",
+    () => {
+      window.clearTimeout(scrollSyncTimer);
+      scrollSyncTimer = window.setTimeout(syncIndexFromScroll, 80);
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    goToSlide(currentIndex, "auto");
+  });
+
+  updateControls();
+}
+
 const auditForm = document.getElementById("audit-form");
 
 if (auditForm) {

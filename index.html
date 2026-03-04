@@ -57,7 +57,7 @@
     <header class="site-header">
       <div class="container nav-wrap">
         <a href="#home" class="logo" aria-label="worldin.net home">
-          worldin<span>.net</span>
+          <span class="logo-world">world</span><span class="logo-in">in</span><span class="logo-net">.net</span>
         </a>
 
         <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
@@ -81,7 +81,7 @@
           into one growth machine.
         </h1>
         <p class="hero-copy" data-reveal>
-          worldin.net helps you win top search positions, capture high-intent demand, and scale paid traffic with
+          World in Net helps you win top search positions, capture high-intent demand, and scale paid traffic with
           full-funnel precision. One strategy. One data model. Clear business outcomes.
         </p>
         <div class="hero-actions" data-reveal>
@@ -207,93 +207,207 @@
             <h2>Measurable growth, not vanity metrics</h2>
           </div>
 
-          <div class="cases-grid">
-            <article class="case-card" data-reveal>
-              <header>
-                <h3>E-commerce Store</h3>
-                <p>SEO + Google Ads + Meta Retargeting</p>
-              </header>
-              <div class="case-columns">
-                <div>
-                  <h4>Before</h4>
-                  <ul>
-                    <li>Low top-10 keyword share</li>
-                    <li>High CPA from paid search</li>
-                    <li>Weak returning customer flow</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>After</h4>
-                  <ul>
-                    <li>+164% organic sessions</li>
-                    <li>-31% CPA on Google Ads</li>
-                    <li>+72% repeat purchases</li>
-                  </ul>
-                </div>
-              </div>
-              <footer>
-                <span>Top-3 rankings: 19 -> 67</span>
-                <span>ROAS: 1.9x -> 4.2x</span>
-              </footer>
-            </article>
+          <div class="cases-carousel-wrap" data-reveal>
+            <button class="cases-nav" id="cases-prev" type="button" aria-label="Previous case">Prev</button>
+            <div class="cases-viewport" id="cases-viewport">
+              <div class="cases-track">
+                <article class="case-slide">
+                  <header>
+                    <div>
+                      <h3>Neighborhood Cafe</h3>
+                      <p>Local SEO + Google Search + Instagram Ads</p>
+                    </div>
+                    <span class="case-sector">Cafe</span>
+                  </header>
+                  <div class="case-columns">
+                    <div>
+                      <h4>Before</h4>
+                      <ul>
+                        <li>Low map visibility for brunch keywords</li>
+                        <li>Only 28 reservations per month</li>
+                        <li>No remarketing for repeat visits</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>After</h4>
+                      <ul>
+                        <li>Top-3 local pack visibility on core terms</li>
+                        <li>79 reservations per month (+182%)</li>
+                        <li>-34% cost per booking from paid ads</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="case-chart">
+                    <p>Monthly reservations trend (before vs after)</p>
+                    <div class="chart-bars">
+                      <div class="chart-month"><span class="bar before" style="--h: 22%"></span><span class="bar after" style="--h: 34%"></span><small>Jan</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 24%"></span><span class="bar after" style="--h: 41%"></span><small>Feb</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 26%"></span><span class="bar after" style="--h: 48%"></span><small>Mar</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 27%"></span><span class="bar after" style="--h: 56%"></span><small>Apr</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 29%"></span><span class="bar after" style="--h: 63%"></span><small>May</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 31%"></span><span class="bar after" style="--h: 71%"></span><small>Jun</small></div>
+                    </div>
+                    <div class="chart-legend">
+                      <span><i class="legend-before"></i>Before</span>
+                      <span><i class="legend-after"></i>After</span>
+                    </div>
+                  </div>
+                  <footer>
+                    <span>Map actions: 410 -> 1,060</span>
+                    <span>Booking rate: 2.8% -> 5.9%</span>
+                  </footer>
+                </article>
 
-            <article class="case-card" data-reveal>
-              <header>
-                <h3>B2B Service Company</h3>
-                <p>Technical SEO + Search Ads + Lead Funnel</p>
-              </header>
-              <div class="case-columns">
-                <div>
-                  <h4>Before</h4>
-                  <ul>
-                    <li>Irrelevant traffic from broad terms</li>
-                    <li>Fragmented ad-to-page messaging</li>
-                    <li>No clear lead scoring</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>After</h4>
-                  <ul>
-                    <li>+121% MQL growth</li>
-                    <li>-44% cost per qualified lead</li>
-                    <li>+58% conversion rate on core pages</li>
-                  </ul>
-                </div>
-              </div>
-              <footer>
-                <span>Lead volume: 86 -> 247 / month</span>
-                <span>SQL rate: 18% -> 33%</span>
-              </footer>
-            </article>
+                <article class="case-slide">
+                  <header>
+                    <div>
+                      <h3>Fast Delivery Service</h3>
+                      <p>Search Ads + Meta Prospecting + SEO Landing Pages</p>
+                    </div>
+                    <span class="case-sector">Delivery</span>
+                  </header>
+                  <div class="case-columns">
+                    <div>
+                      <h4>Before</h4>
+                      <ul>
+                        <li>Unstable daily order volume</li>
+                        <li>High acquisition cost in rush hours</li>
+                        <li>Weak retention after first order</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>After</h4>
+                      <ul>
+                        <li>+96% weekly orders after restructuring campaigns</li>
+                        <li>-29% customer acquisition cost</li>
+                        <li>+52% repeat orders via remarketing</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="case-chart">
+                    <p>Monthly high-intent order leads (before vs after)</p>
+                    <div class="chart-bars">
+                      <div class="chart-month"><span class="bar before" style="--h: 35%"></span><span class="bar after" style="--h: 42%"></span><small>Jan</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 36%"></span><span class="bar after" style="--h: 48%"></span><small>Feb</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 38%"></span><span class="bar after" style="--h: 55%"></span><small>Mar</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 39%"></span><span class="bar after" style="--h: 63%"></span><small>Apr</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 40%"></span><span class="bar after" style="--h: 70%"></span><small>May</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 42%"></span><span class="bar after" style="--h: 78%"></span><small>Jun</small></div>
+                    </div>
+                    <div class="chart-legend">
+                      <span><i class="legend-before"></i>Before</span>
+                      <span><i class="legend-after"></i>After</span>
+                    </div>
+                  </div>
+                  <footer>
+                    <span>Orders/week: 180 -> 353</span>
+                    <span>ROAS: 2.1x -> 3.8x</span>
+                  </footer>
+                </article>
 
-            <article class="case-card" data-reveal>
-              <header>
-                <h3>Local Multi-Location Brand</h3>
-                <p>Local SEO + Meta Ads + Search Campaigns</p>
-              </header>
-              <div class="case-columns">
-                <div>
-                  <h4>Before</h4>
-                  <ul>
-                    <li>Unstable map visibility</li>
-                    <li>Limited geo-targeted ad structure</li>
-                    <li>Low call conversion from mobile</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>After</h4>
-                  <ul>
-                    <li>+93% calls from local search</li>
-                    <li>+76% store visit intent actions</li>
-                    <li>-37% blended CPL</li>
-                  </ul>
-                </div>
+                <article class="case-slide">
+                  <header>
+                    <div>
+                      <h3>Local Home Goods Store</h3>
+                      <p>Local SEO + Google Ads + Facebook Catalog Campaigns</p>
+                    </div>
+                    <span class="case-sector">Local Store</span>
+                  </header>
+                  <div class="case-columns">
+                    <div>
+                      <h4>Before</h4>
+                      <ul>
+                        <li>Weak local map and category rankings</li>
+                        <li>Inconsistent foot traffic on weekdays</li>
+                        <li>Low blended return from paid media</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>After</h4>
+                      <ul>
+                        <li>+74% store visit intent actions</li>
+                        <li>+67% online order volume from local pages</li>
+                        <li>-41% blended cost per lead</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="case-chart">
+                    <p>Monthly qualified local leads (before vs after)</p>
+                    <div class="chart-bars">
+                      <div class="chart-month"><span class="bar before" style="--h: 28%"></span><span class="bar after" style="--h: 33%"></span><small>Jan</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 27%"></span><span class="bar after" style="--h: 40%"></span><small>Feb</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 29%"></span><span class="bar after" style="--h: 47%"></span><small>Mar</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 31%"></span><span class="bar after" style="--h: 55%"></span><small>Apr</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 30%"></span><span class="bar after" style="--h: 61%"></span><small>May</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 32%"></span><span class="bar after" style="--h: 68%"></span><small>Jun</small></div>
+                    </div>
+                    <div class="chart-legend">
+                      <span><i class="legend-before"></i>Before</span>
+                      <span><i class="legend-after"></i>After</span>
+                    </div>
+                  </div>
+                  <footer>
+                    <span>Local pack share: 18% -> 57%</span>
+                    <span>Revenue: +44% in 6 months</span>
+                  </footer>
+                </article>
+
+                <article class="case-slide">
+                  <header>
+                    <div>
+                      <h3>Urban Dance Studio</h3>
+                      <p>SEO Program Pages + Search Ads + Instagram Video Funnel</p>
+                    </div>
+                    <span class="case-sector">Dance Studio</span>
+                  </header>
+                  <div class="case-columns">
+                    <div>
+                      <h4>Before</h4>
+                      <ul>
+                        <li>Low trial class bookings from website</li>
+                        <li>Empty weekday classes and weak follow-up</li>
+                        <li>Creative fatigue in social ads</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>After</h4>
+                      <ul>
+                        <li>+133% trial class bookings</li>
+                        <li>-36% cost per lead after funnel rebuild</li>
+                        <li>+26% retention through segmented campaigns</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="case-chart">
+                    <p>Monthly trial class leads (before vs after)</p>
+                    <div class="chart-bars">
+                      <div class="chart-month"><span class="bar before" style="--h: 20%"></span><span class="bar after" style="--h: 25%"></span><small>Jan</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 22%"></span><span class="bar after" style="--h: 33%"></span><small>Feb</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 21%"></span><span class="bar after" style="--h: 42%"></span><small>Mar</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 23%"></span><span class="bar after" style="--h: 52%"></span><small>Apr</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 24%"></span><span class="bar after" style="--h: 61%"></span><small>May</small></div>
+                      <div class="chart-month"><span class="bar before" style="--h: 26%"></span><span class="bar after" style="--h: 72%"></span><small>Jun</small></div>
+                    </div>
+                    <div class="chart-legend">
+                      <span><i class="legend-before"></i>Before</span>
+                      <span><i class="legend-after"></i>After</span>
+                    </div>
+                  </div>
+                  <footer>
+                    <span>Leads/month: 46 -> 107</span>
+                    <span>Class fill rate: 42% -> 81%</span>
+                  </footer>
+                </article>
               </div>
-              <footer>
-                <span>Map pack share: 22% -> 61%</span>
-                <span>Revenue: +48% in 2 quarters</span>
-              </footer>
-            </article>
+            </div>
+            <button class="cases-nav" id="cases-next" type="button" aria-label="Next case">Next</button>
+          </div>
+
+          <div class="cases-dots" id="cases-dots" data-reveal>
+            <button class="is-active" type="button" data-index="0" aria-label="Go to cafe case">Cafe</button>
+            <button type="button" data-index="1" aria-label="Go to delivery case">Delivery</button>
+            <button type="button" data-index="2" aria-label="Go to local store case">Local Store</button>
+            <button type="button" data-index="3" aria-label="Go to dance studio case">Dance Studio</button>
           </div>
         </div>
       </section>
@@ -424,7 +538,7 @@
       <div class="container footer-wrap">
         <div>
           <a href="#home" class="logo">
-            worldin<span>.net</span>
+            <span class="logo-world">world</span><span class="logo-in">in</span><span class="logo-net">.net</span>
           </a>
           <p>Performance marketing partner for scalable SEO and paid growth.</p>
         </div>
