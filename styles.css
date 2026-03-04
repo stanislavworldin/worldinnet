@@ -103,11 +103,11 @@ a {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.3rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .logo::before {
@@ -117,6 +117,7 @@ a {
   border-radius: 50%;
   background: linear-gradient(180deg, var(--accent), var(--accent-3));
   box-shadow: 0 0 0 8px rgba(255, 106, 61, 0.18);
+  margin-right: 0.45rem;
 }
 
 .logo-world {
@@ -124,16 +125,30 @@ a {
 }
 
 .logo-in {
-  color: #11293f;
-  background: linear-gradient(120deg, #18c5a9, #ffd463);
-  border-radius: 999px;
-  padding: 0.06rem 0.34rem 0.1rem;
+  position: relative;
+  color: #86f5dd;
+  display: inline-block;
   line-height: 1;
-  box-shadow: 0 6px 14px rgba(24, 197, 169, 0.35);
+  padding: 0 0.02rem;
+  margin: 0 0.02rem;
+  text-shadow: 0 0 16px rgba(24, 197, 169, 0.45);
+}
+
+.logo-in::after {
+  content: "";
+  position: absolute;
+  left: -0.06rem;
+  right: -0.06rem;
+  bottom: -0.12rem;
+  height: 0.24rem;
+  border-radius: 999px;
+  background: linear-gradient(100deg, #18c5a9, #ffd463);
+  z-index: -1;
+  opacity: 0.9;
 }
 
 .logo-net {
-  color: var(--accent-3);
+  color: #f3ca65;
 }
 
 .main-nav {
@@ -569,21 +584,27 @@ a {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: end;
   gap: 0.34rem;
-  min-height: 148px;
+  height: 148px;
   margin-top: 0.45rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.1rem;
 }
 
 .chart-month {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: end;
-  justify-items: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   column-gap: 0.16rem;
-  row-gap: 0.28rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .chart-month small {
-  grid-column: 1 / -1;
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 0.67rem;
   letter-spacing: 0.04em;
   color: #b8cce4;
@@ -964,7 +985,7 @@ a {
   }
 
   .chart-bars {
-    min-height: 118px;
+    height: 118px;
   }
 
   .diagram-core {
