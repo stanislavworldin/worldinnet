@@ -40,6 +40,78 @@ if ("IntersectionObserver" in window) {
   revealElements.forEach((element) => element.classList.add("visible"));
 }
 
+const liveAnalyticsPanel = document.getElementById("live-analytics");
+
+if (liveAnalyticsPanel) {
+  const valueNodes = {
+    impressions: liveAnalyticsPanel.querySelector("[data-live-key='impressions']"),
+    clicks: liveAnalyticsPanel.querySelector("[data-live-key='clicks']"),
+    leads: liveAnalyticsPanel.querySelector("[data-live-key='leads']"),
+    bookings: liveAnalyticsPanel.querySelector("[data-live-key='bookings']"),
+    spend: liveAnalyticsPanel.querySelector("[data-live-key='spend']"),
+    pipeline: liveAnalyticsPanel.querySelector("[data-live-key='pipeline']"),
+  };
+
+  const updatedLabel = liveAnalyticsPanel.querySelector("[data-live-updated]");
+
+  const state = {
+    impressions: 182460,
+    clicks: 6940,
+    leads: 248,
+    bookings: 41,
+    spend: 4820,
+    pipeline: 39640,
+  };
+
+  const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  const formatMetric = (key, value) => {
+    if (key === "spend" || key === "pipeline") {
+      return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      });
+    }
+
+    return value.toLocaleString("en-US");
+  };
+
+  const renderMetrics = () => {
+    Object.entries(valueNodes).forEach(([key, node]) => {
+      if (!node) {
+        return;
+      }
+
+      node.textContent = formatMetric(key, state[key]);
+      node.classList.remove("tick-up");
+      void node.offsetWidth;
+      node.classList.add("tick-up");
+    });
+
+    if (updatedLabel) {
+      updatedLabel.textContent = `Updated ${new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })}`;
+    }
+  };
+
+  renderMetrics();
+
+  window.setInterval(() => {
+    state.impressions += randomInt(190, 420);
+    state.clicks += randomInt(7, 17);
+    state.leads += randomInt(1, 3);
+    state.bookings += Math.random() < 0.42 ? 1 : 0;
+    state.spend += randomInt(11, 29);
+    state.pipeline += randomInt(68, 230);
+
+    renderMetrics();
+  }, 1000);
+}
+
 const casesWindow = document.getElementById("cases-window");
 
 if (casesWindow) {
