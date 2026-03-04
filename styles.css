@@ -247,6 +247,7 @@ main {
   margin-top: 0.28rem;
 }
 
+.trust h2,
 .mechanism h2,
 .cases h2,
 .audit h2 {
@@ -255,6 +256,120 @@ main {
   font-size: clamp(2rem, 6vw, 4.4rem);
   line-height: 0.92;
   letter-spacing: 0.01em;
+}
+
+.trust {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255, 212, 0, 0.2), transparent 40%),
+    radial-gradient(circle at 2% 90%, rgba(76, 242, 200, 0.16), transparent 35%),
+    #fff;
+}
+
+.trust-lead {
+  margin: 0.52rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  max-width: 72ch;
+}
+
+.trust-grid {
+  margin-top: 0.86rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 0.72rem;
+}
+
+.trust-panel {
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0.72rem;
+}
+
+.trust-panel h3 {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.85rem;
+  line-height: 0.95;
+}
+
+.logo-wall {
+  margin-top: 0.56rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.logo-pill {
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: #f8f8f8;
+  padding: 0.3rem 0.62rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.cert-list {
+  margin-top: 0.56rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.cert-badge {
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 0.56rem;
+}
+
+.cert-google {
+  background: linear-gradient(125deg, rgba(66, 133, 244, 0.12), rgba(52, 168, 83, 0.1));
+}
+
+.cert-meta {
+  background: linear-gradient(125deg, rgba(24, 119, 242, 0.12), rgba(233, 30, 99, 0.09));
+}
+
+.cert-badge strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.cert-badge span {
+  display: block;
+  margin-top: 0.24rem;
+  font-size: 0.78rem;
+  color: #303030;
+}
+
+.trust-stats {
+  margin-top: 0.56rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.trust-stat {
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: #f8f8f8;
+  padding: 0.54rem;
+}
+
+.trust-stat strong {
+  display: block;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  line-height: 0.9;
+  color: #0d7f67;
+}
+
+.trust-stat span {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.8rem;
+  color: #2f2f2f;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .mechanism ol {
@@ -434,6 +549,7 @@ main {
 }
 
 @media (max-width: 1100px) {
+  .trust-grid,
   .services,
   .cases-grid {
     grid-template-columns: 1fr 1fr;
@@ -455,6 +571,7 @@ main {
   }
 
   .manifesto,
+  .trust-grid,
   .services,
   .cases-grid {
     grid-template-columns: 1fr;
