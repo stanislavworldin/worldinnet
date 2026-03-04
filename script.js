@@ -331,6 +331,204 @@ if ("IntersectionObserver" in window) {
   charts.forEach((chart) => animateChart(chart));
 }
 
+const initReactorSignalField = () => {
+  const visual = document.querySelector(".engine-visual");
+  const canvas = document.getElementById("reactor-canvas");
+
+  if (!visual || !canvas) {
+    return;
+  }
+
+  const context = canvas.getContext("2d");
+
+  if (!context) {
+    return;
+  }
+
+  const coreNode = visual.querySelector(".engine-core");
+  const sourceNodes = Array.from(visual.querySelectorAll(".engine-node"));
+
+  if (!coreNode || !sourceNodes.length) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isMobile = window.innerWidth < 820;
+
+  let width = 1;
+  let height = 1;
+  let center = { x: 0, y: 0 };
+  let anchors = [];
+  let particles = [];
+  let lastFrameTime = 0;
+  let spawnBudget = 0;
+  let requestId = 0;
+
+  const maxParticles = isMobile ? 24 : 56;
+  const spawnRate = isMobile ? 6 : 14;
+
+  const random = (min, max) => Math.random() * (max - min) + min;
+
+  const resizeCanvas = () => {
+    const visualRect = visual.getBoundingClientRect();
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = Math.max(visualRect.width, 1);
+    height = Math.max(visualRect.height, 1);
+
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    const coreRect = coreNode.getBoundingClientRect();
+    center = {
+      x: coreRect.left - visualRect.left + coreRect.width / 2,
+      y: coreRect.top - visualRect.top + coreRect.height / 2,
+    };
+
+    anchors = sourceNodes.map((node) => {
+      const rect = node.getBoundingClientRect();
+      return {
+        x: rect.left - visualRect.left + rect.width / 2,
+        y: rect.top - visualRect.top + rect.height / 2,
+      };
+    });
+  };
+
+  const createParticle = () => {
+    const originIndex = Math.floor(Math.random() * anchors.length);
+
+    return {
+      originIndex,
+      progress: 0,
+      speed: random(0.36, 0.68),
+      radius: random(1.6, 3.4),
+      drift: random(-22, 22),
+      wobbleSpeed: random(4, 8),
+      alpha: random(0.45, 0.95),
+    };
+  };
+
+  const drawSignalLines = (timeSeconds) => {
+    context.save();
+    context.lineWidth = 1.4;
+    context.setLineDash([7, 11]);
+    context.lineDashOffset = -timeSeconds * 38;
+
+    anchors.forEach((anchor, index) => {
+      const pulse = 0.5 + Math.sin(timeSeconds * 2.2 + index * 1.1) * 0.5;
+      const gradient = context.createLinearGradient(anchor.x, anchor.y, center.x, center.y);
+      gradient.addColorStop(0, `rgba(114, 178, 255, ${0.2 + pulse * 0.22})`);
+      gradient.addColorStop(1, `rgba(84, 240, 221, ${0.42 + pulse * 0.38})`);
+      context.strokeStyle = gradient;
+
+      context.beginPath();
+      context.moveTo(anchor.x, anchor.y);
+      context.lineTo(center.x, center.y);
+      context.stroke();
+    });
+
+    context.restore();
+  };
+
+  const drawNodeGlows = () => {
+    anchors.forEach((anchor) => {
+      const glow = context.createRadialGradient(anchor.x, anchor.y, 0, anchor.x, anchor.y, 20);
+      glow.addColorStop(0, "rgba(122, 186, 255, 0.46)");
+      glow.addColorStop(1, "rgba(122, 186, 255, 0)");
+
+      context.fillStyle = glow;
+      context.beginPath();
+      context.arc(anchor.x, anchor.y, 20, 0, Math.PI * 2);
+      context.fill();
+    });
+
+    const coreGlow = context.createRadialGradient(center.x, center.y, 8, center.x, center.y, 66);
+    coreGlow.addColorStop(0, "rgba(83, 244, 215, 0.35)");
+    coreGlow.addColorStop(1, "rgba(83, 244, 215, 0)");
+    context.fillStyle = coreGlow;
+    context.beginPath();
+    context.arc(center.x, center.y, 66, 0, Math.PI * 2);
+    context.fill();
+  };
+
+  const drawParticles = (timeSeconds, deltaSeconds) => {
+    spawnBudget += deltaSeconds * spawnRate;
+
+    while (spawnBudget >= 1 && particles.length < maxParticles) {
+      particles.push(createParticle());
+      spawnBudget -= 1;
+    }
+
+    particles = particles.filter((particle) => particle.progress < 1);
+
+    particles.forEach((particle) => {
+      particle.progress += particle.speed * deltaSeconds;
+
+      const origin = anchors[particle.originIndex] || anchors[0];
+      const eased = 1 - Math.pow(1 - Math.min(particle.progress, 1), 2.2);
+      const dx = center.x - origin.x;
+      const dy = center.y - origin.y;
+      const distance = Math.hypot(dx, dy) || 1;
+      const normalX = -dy / distance;
+      const normalY = dx / distance;
+
+      const wave = Math.sin(timeSeconds * particle.wobbleSpeed + particle.progress * 10) * particle.drift;
+      const damping = 1 - eased;
+
+      const x = origin.x + dx * eased + normalX * wave * damping;
+      const y = origin.y + dy * eased + normalY * wave * damping;
+
+      context.fillStyle = `rgba(83, 244, 215, ${particle.alpha * damping})`;
+      context.beginPath();
+      context.arc(x, y, Math.max(0.9, particle.radius * damping), 0, Math.PI * 2);
+      context.fill();
+    });
+  };
+
+  const drawFrame = (time) => {
+    const timeSeconds = time * 0.001;
+
+    if (!lastFrameTime) {
+      lastFrameTime = timeSeconds;
+    }
+
+    const deltaSeconds = Math.min(0.04, timeSeconds - lastFrameTime);
+    lastFrameTime = timeSeconds;
+
+    context.clearRect(0, 0, width, height);
+    drawSignalLines(timeSeconds);
+    drawParticles(timeSeconds, prefersReducedMotion ? 0 : deltaSeconds);
+    drawNodeGlows();
+
+    if (!prefersReducedMotion) {
+      requestId = window.requestAnimationFrame(drawFrame);
+    }
+  };
+
+  resizeCanvas();
+  drawFrame(0);
+
+  if (!prefersReducedMotion) {
+    requestId = window.requestAnimationFrame(drawFrame);
+  }
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (requestId) {
+      window.cancelAnimationFrame(requestId);
+    }
+  });
+};
+
+initReactorSignalField();
+
 const auditForm = document.getElementById("audit-form");
 
 if (auditForm) {

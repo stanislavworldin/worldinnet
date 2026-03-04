@@ -523,12 +523,23 @@ a {
   overflow: hidden;
 }
 
+.reactor-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .engine-visual::before {
   content: "";
   position: absolute;
   inset: 1rem;
   border-radius: 16px;
   border: 1px dashed rgba(140, 204, 255, 0.22);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .engine-core,
@@ -538,6 +549,7 @@ a {
   border-radius: 12px;
   padding: 0.55rem 0.62rem;
   box-shadow: 0 12px 26px rgba(2, 8, 19, 0.48);
+  z-index: 3;
 }
 
 .engine-core {
@@ -549,6 +561,7 @@ a {
   font-family: "Orbitron", sans-serif;
   color: #05243d;
   background: linear-gradient(105deg, var(--accent-cyan), var(--accent-blue), var(--accent-gold));
+  box-shadow: 0 0 0 1px rgba(84, 240, 221, 0.28), 0 0 36px rgba(106, 162, 255, 0.44);
 }
 
 .engine-node {
