@@ -50,19 +50,33 @@ a {
   display: inline-flex;
   align-items: baseline;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.logo-world,
-.logo-net {
+.logo-world {
   color: var(--ink);
 }
 
 .logo-in {
+  position: relative;
+  margin-left: 0.04em;
   color: #08b08d;
   text-shadow: 0 0 16px rgba(8, 176, 141, 0.25);
+}
+
+.logo-in::after {
+  content: "";
+  position: absolute;
+  left: 0.05em;
+  right: 0.05em;
+  bottom: -0.12em;
+  height: 0.08em;
+  border-radius: 999px;
+  background: #08b08d;
 }
 
 .topbar nav {
