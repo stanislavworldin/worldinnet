@@ -211,7 +211,17 @@
 
       <h2 class="section-title" id="audit">Request Audit</h2>
       <section class="audit-section">
-        <form id="audit-form" class="audit-form" novalidate>
+        <form
+          id="audit-form"
+          class="audit-form"
+          action="https://formsubmit.co/stas.bozhko@gmail.com"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="_subject" value="JPMF Co. Audit Request" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" />
           <label>
             Full Name
             <input type="text" name="name" required />

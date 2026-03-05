@@ -165,7 +165,7 @@ body {
 
 .audit-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 18px;
   padding: 32px 40px 40px;
 }
@@ -182,6 +182,7 @@ body {
 .audit-form textarea {
   width: 100%;
   border: 1px solid #cccccc;
+  border-radius: 0;
   background: #fff;
   color: #000;
   font: inherit;
@@ -189,9 +190,23 @@ body {
   padding: 12px 14px;
 }
 
+.audit-form input:focus,
+.audit-form select:focus,
+.audit-form textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
 .audit-form textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.honey {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .audit-form .full,
@@ -217,6 +232,7 @@ body {
 .audit-form button {
   justify-self: start;
   border: 1px solid #000;
+  border-radius: 0;
   background: #000;
   color: #fff;
   padding: 13px 24px;
