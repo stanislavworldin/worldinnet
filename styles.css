@@ -232,6 +232,29 @@ body {
   font-size: 12px;
 }
 
+.cases-actions {
+  border-bottom: 1px solid var(--border-color);
+  padding: 18px 40px 26px;
+}
+
+.cases-actions button {
+  border: 1px solid #000;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.cases-actions button:hover {
+  background: #000;
+  color: #fff;
+}
+
 .case-item-card {
   cursor: default;
 }
@@ -513,6 +536,10 @@ body {
 
   .cases-count {
     justify-content: flex-start;
+  }
+
+  .cases-actions {
+    padding: 16px 24px 22px;
   }
 
   .card {

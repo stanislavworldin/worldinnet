@@ -15,6 +15,10 @@ const casesYearFilter = document.getElementById('cases-year-filter');
 const casesNicheFilter = document.getElementById('cases-niche-filter');
 const casesSort = document.getElementById('cases-sort');
 const casesCount = document.getElementById('cases-count');
+const casesShowMoreButton = document.getElementById('cases-show-more');
+const INITIAL_CASES_LIMIT = 8;
+const CASES_STEP = 8;
+let visibleCasesLimit = INITIAL_CASES_LIMIT;
 
 const caseModal = document.getElementById('case-modal');
 const caseModalClose = document.getElementById('case-modal-close');
@@ -409,15 +413,26 @@ const renderCases = () => {
     return;
   }
 
-  const visibleCases = getFilteredCases();
+  const filteredCases = getFilteredCases();
+  const visibleCases = filteredCases.slice(0, visibleCasesLimit);
 
   casesGrid.innerHTML = '';
 
   if (casesCount) {
-    casesCount.textContent = `Showing ${visibleCases.length} of ${CASES.length} cases`;
+    casesCount.textContent = `Showing ${visibleCases.length} of ${filteredCases.length} filtered cases`;
   }
 
-  if (visibleCases.length === 0) {
+  if (casesShowMoreButton) {
+    const remaining = filteredCases.length - visibleCases.length;
+    if (remaining > 0) {
+      casesShowMoreButton.hidden = false;
+      casesShowMoreButton.textContent = `Show more (${remaining} left)`;
+    } else {
+      casesShowMoreButton.hidden = true;
+    }
+  }
+
+  if (filteredCases.length === 0) {
     const empty = document.createElement('article');
     empty.className = 'card case-item-card';
     empty.innerHTML =
@@ -521,6 +536,7 @@ if (casesGrid) {
 if (casesYearFilter) {
   casesYearFilter.addEventListener('change', () => {
     caseFiltersState.year = casesYearFilter.value;
+    visibleCasesLimit = INITIAL_CASES_LIMIT;
     renderCases();
   });
 }
@@ -528,6 +544,7 @@ if (casesYearFilter) {
 if (casesNicheFilter) {
   casesNicheFilter.addEventListener('change', () => {
     caseFiltersState.niche = casesNicheFilter.value;
+    visibleCasesLimit = INITIAL_CASES_LIMIT;
     renderCases();
   });
 }
@@ -535,6 +552,14 @@ if (casesNicheFilter) {
 if (casesSort) {
   casesSort.addEventListener('change', () => {
     caseFiltersState.sort = casesSort.value;
+    visibleCasesLimit = INITIAL_CASES_LIMIT;
+    renderCases();
+  });
+}
+
+if (casesShowMoreButton) {
+  casesShowMoreButton.addEventListener('click', () => {
+    visibleCasesLimit += CASES_STEP;
     renderCases();
   });
 }
