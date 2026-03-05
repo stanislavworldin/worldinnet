@@ -98,119 +98,31 @@
       </div>
 
       <h2 class="section-title" id="cases">Selected Cases</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="card-meta">
-            <span>Fintech Startup</span>
-            <span>Oct 2023</span>
-          </div>
-          <p class="card-type">Type: B2C Fintech App</p>
-          <h3 class="card-title">Scaling user acquisition via Google Ads</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> CAC stayed above $140 and lead quality was unstable across regions.<br />
-            <strong>After:</strong> New intent clusters and geo bidding reduced waste and stabilized lead quality.
-          </p>
-          <div class="card-stats">Result: +320% MQLs in 3 months</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>National E-commerce</span>
-            <span>Aug 2023</span>
-          </div>
-          <p class="card-type">Type: DTC Retail</p>
-          <h3 class="card-title">Recovering lost traffic after Google Core Update</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Organic sessions dropped 48% after algorithm volatility.<br />
-            <strong>After:</strong> Technical cleanup and EEAT content architecture restored rankings on core pages.
-          </p>
-          <div class="card-stats">Result: +85% organic revenue YoY</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>SaaS Platform</span>
-            <span>May 2023</span>
-          </div>
-          <p class="card-type">Type: B2B SaaS</p>
-          <h3 class="card-title">B2B Lead Generation on Meta Ads</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Lead forms generated volume but low SQL rates and high CPL.<br />
-            <strong>After:</strong> LTV-based audiences and offer segmentation improved lead quality by funnel stage.
-          </p>
-          <div class="card-stats">Result: 2,400+ qualified leads generated</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>Multi-location Dental Group</span>
-            <span>Feb 2024</span>
-          </div>
-          <p class="card-type">Type: Local Healthcare</p>
-          <h3 class="card-title">Local SEO + Search Ads for appointment growth</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Weak map visibility and inconsistent calls from paid search.<br />
-            <strong>After:</strong> Local landing structure plus call-focused campaigns increased booked consults.
-          </p>
-          <div class="card-stats">Result: 3.2x booked appointments</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>Food Delivery Brand</span>
-            <span>Jun 2024</span>
-          </div>
-          <p class="card-type">Type: On-demand Delivery</p>
-          <h3 class="card-title">Meta and Google daypart optimization</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Peak-hour campaigns overspent with high CPA during dinner windows.<br />
-            <strong>After:</strong> Hour-level bid rules and creative rotation improved dinner-hour efficiency.
-          </p>
-          <div class="card-stats">Result: CPA $31 -&gt; $18</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>Real Estate Developer</span>
-            <span>Nov 2024</span>
-          </div>
-          <p class="card-type">Type: Residential Real Estate</p>
-          <h3 class="card-title">Lead qualification architecture rebuild</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> High volume inquiries, low qualification for premium inventory.<br />
-            <strong>After:</strong> New ad messaging and funnel routing improved lead intent quality.
-          </p>
-          <div class="card-stats">Result: +210% qualified inquiries</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>Online Education Platform</span>
-            <span>Mar 2025</span>
-          </div>
-          <p class="card-type">Type: EdTech</p>
-          <h3 class="card-title">SEO + retargeting for trial-to-paid growth</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Trial signups were flat and paid conversion lagged by cohort.<br />
-            <strong>After:</strong> Content clusters and retargeting sequences improved trial activation.
-          </p>
-          <div class="card-stats">Result: +168% trial-to-paid conversion</div>
-        </article>
-
-        <article class="card">
-          <div class="card-meta">
-            <span>Home Services Network</span>
-            <span>Jul 2025</span>
-          </div>
-          <p class="card-type">Type: Local Services</p>
-          <h3 class="card-title">Integrated demand capture across 12 cities</h3>
-          <p class="card-desc">
-            <strong>Before:</strong> Fragmented campaigns and duplicate keywords across city accounts.<br />
-            <strong>After:</strong> Unified account structure and local SEO pages improved lead consistency.
-          </p>
-          <div class="card-stats">Result: +124% organic leads and -36% CPL</div>
-        </article>
+      <div class="cases-toolbar">
+        <label class="cases-filter">
+          Year
+          <select id="cases-year-filter">
+            <option value="all">All years</option>
+          </select>
+        </label>
+        <label class="cases-filter">
+          Niche
+          <select id="cases-niche-filter">
+            <option value="all">All niches</option>
+          </select>
+        </label>
+        <label class="cases-filter">
+          Sort
+          <select id="cases-sort">
+            <option value="date_desc">Newest first</option>
+            <option value="date_asc">Oldest first</option>
+            <option value="growth_desc">Highest lead growth</option>
+            <option value="cpl_desc">Largest CPL reduction</option>
+          </select>
+        </label>
+        <p class="cases-count" id="cases-count"></p>
       </div>
+      <div class="grid" id="cases-grid"></div>
 
       <h2 class="section-title" id="audit">Request Audit</h2>
       <section class="audit-section">
@@ -298,6 +210,34 @@
         <section class="service-modal-section">
           <h4>Best for</h4>
           <p id="service-modal-fit"></p>
+        </section>
+      </div>
+    </div>
+
+    <div class="case-modal hidden" id="case-modal" aria-hidden="true">
+      <div class="service-modal-backdrop" data-close-case-modal></div>
+      <div class="service-modal-dialog case-modal-dialog" role="dialog" aria-labelledby="case-modal-title">
+        <button class="service-modal-close" id="case-modal-close" type="button" aria-label="Close">
+          Close
+        </button>
+        <p class="service-modal-kicker" id="case-modal-kicker"></p>
+        <h3 class="service-modal-title" id="case-modal-title"></h3>
+
+        <section class="service-modal-section">
+          <h4>Before</h4>
+          <p id="case-modal-before"></p>
+        </section>
+        <section class="service-modal-section">
+          <h4>What we changed</h4>
+          <p id="case-modal-after"></p>
+        </section>
+        <section class="service-modal-section">
+          <h4>Tools used</h4>
+          <ul id="case-modal-tools" class="case-tools-list"></ul>
+        </section>
+        <section class="service-modal-section">
+          <h4>Impact on results</h4>
+          <p id="case-modal-impact"></p>
         </section>
       </div>
     </div>

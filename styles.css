@@ -188,6 +188,78 @@ body {
   color: #fff;
 }
 
+.cases-toolbar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cases-filter,
+.cases-count {
+  margin: 0;
+  background: #fff;
+  padding: 14px 16px;
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.cases-filter {
+  display: grid;
+  gap: 8px;
+}
+
+.cases-filter select {
+  border: 1px solid #d0d0d0;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 13px;
+  padding: 9px 10px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cases-count {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #222;
+  font-size: 12px;
+}
+
+.case-item-card {
+  cursor: default;
+}
+
+.case-item-card .card-desc {
+  flex-grow: 0;
+}
+
+.case-details-btn {
+  margin-top: 14px;
+  align-self: flex-start;
+  border: 1px solid #000;
+  border-radius: 0;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.case-details-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
 .audit-section {
   border-bottom: 1px solid var(--border-color);
 }
@@ -378,6 +450,35 @@ body {
   line-height: 1.6;
 }
 
+.case-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.case-modal.hidden {
+  display: none;
+}
+
+.case-modal-dialog {
+  width: min(860px, 100%);
+}
+
+.case-tools-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #222;
+  line-height: 1.6;
+}
+
+.case-tools-list li + li {
+  margin-top: 4px;
+}
+
 @media (max-width: 900px) {
   .header {
     padding: 24px;
@@ -404,6 +505,14 @@ body {
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .cases-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .cases-count {
+    justify-content: flex-start;
   }
 
   .card {
