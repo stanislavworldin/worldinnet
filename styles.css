@@ -114,6 +114,7 @@ body {
 
 .service-card {
   position: relative;
+  background-color: var(--hover-bg);
   outline: none;
 }
 
