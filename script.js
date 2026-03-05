@@ -37,7 +37,7 @@ if (auditForm) {
 
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = false;
-        submitButton.textContent = "Order Audit";
+        submitButton.textContent = "Request Audit";
       }
     }, 900);
   });
