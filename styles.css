@@ -98,6 +98,12 @@ body {
   border-bottom: 1px solid var(--border-color);
 }
 
+.services-grid {
+  background-color: transparent;
+  gap: 18px;
+  padding: 18px 40px 24px;
+}
+
 .card {
   background-color: var(--bg-color);
   padding: 40px;
@@ -115,6 +121,7 @@ body {
 .service-card {
   position: relative;
   background-color: var(--hover-bg);
+  border: 1px solid var(--border-color);
   outline: none;
 }
 
@@ -529,6 +536,11 @@ body {
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    gap: 14px;
+    padding: 14px 24px 22px;
   }
 
   .cases-toolbar {
