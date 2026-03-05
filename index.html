@@ -42,7 +42,7 @@
         <nav class="nav">
           <a href="#services">Services</a>
           <a href="#cases">Cases</a>
-          <a href="#agency">Agency</a>
+          <a href="#audit">Audit</a>
           <a href="#contacts">Contacts</a>
         </nav>
       </header>
@@ -101,12 +101,13 @@
             <span>Fintech Startup</span>
             <span>Oct 2023</span>
           </div>
+          <p class="card-type">Type: B2C Fintech App</p>
           <h3 class="card-title">Scaling user acquisition via Google Ads</h3>
           <p class="card-desc">
-            We restructured their entire Google Ads account, focusing on long-tail keywords and
-            localized campaigns.
+            <strong>Before:</strong> CAC stayed above $140 and lead quality was unstable across regions.<br />
+            <strong>After:</strong> New intent clusters and geo bidding reduced waste and stabilized lead quality.
           </p>
-          <div class="card-stats">+320% MQLs in 3 months</div>
+          <div class="card-stats">Result: +320% MQLs in 3 months</div>
         </article>
 
         <article class="card">
@@ -114,12 +115,13 @@
             <span>National E-commerce</span>
             <span>Aug 2023</span>
           </div>
+          <p class="card-type">Type: DTC Retail</p>
           <h3 class="card-title">Recovering lost traffic after Google Core Update</h3>
           <p class="card-desc">
-            Comprehensive technical SEO audit, toxic link disavowal, and EEAT optimization
-            implementation.
+            <strong>Before:</strong> Organic sessions dropped 48% after algorithm volatility.<br />
+            <strong>After:</strong> Technical cleanup and EEAT content architecture restored rankings on core pages.
           </p>
-          <div class="card-stats">+85% Organic Revenue YoY</div>
+          <div class="card-stats">Result: +85% organic revenue YoY</div>
         </article>
 
         <article class="card">
@@ -127,18 +129,134 @@
             <span>SaaS Platform</span>
             <span>May 2023</span>
           </div>
+          <p class="card-type">Type: B2B SaaS</p>
           <h3 class="card-title">B2B Lead Generation on Meta Ads</h3>
           <p class="card-desc">
-            Lookalike audiences based on LTV and interactive ad creatives for lead capture directly in
-            the feed.
+            <strong>Before:</strong> Lead forms generated volume but low SQL rates and high CPL.<br />
+            <strong>After:</strong> LTV-based audiences and offer segmentation improved lead quality by funnel stage.
           </p>
-          <div class="card-stats">2,400+ Qualified Leads generated</div>
+          <div class="card-stats">Result: 2,400+ qualified leads generated</div>
         </article>
 
-        <article class="card card-placeholder" aria-label="View all cases">
-          <p>View all cases -&gt;</p>
+        <article class="card">
+          <div class="card-meta">
+            <span>Multi-location Dental Group</span>
+            <span>Feb 2024</span>
+          </div>
+          <p class="card-type">Type: Local Healthcare</p>
+          <h3 class="card-title">Local SEO + Search Ads for appointment growth</h3>
+          <p class="card-desc">
+            <strong>Before:</strong> Weak map visibility and inconsistent calls from paid search.<br />
+            <strong>After:</strong> Local landing structure plus call-focused campaigns increased booked consults.
+          </p>
+          <div class="card-stats">Result: 3.2x booked appointments</div>
+        </article>
+
+        <article class="card">
+          <div class="card-meta">
+            <span>Food Delivery Brand</span>
+            <span>Jun 2024</span>
+          </div>
+          <p class="card-type">Type: On-demand Delivery</p>
+          <h3 class="card-title">Meta and Google daypart optimization</h3>
+          <p class="card-desc">
+            <strong>Before:</strong> Peak-hour campaigns overspent with high CPA during dinner windows.<br />
+            <strong>After:</strong> Hour-level bid rules and creative rotation improved dinner-hour efficiency.
+          </p>
+          <div class="card-stats">Result: CPA $31 -&gt; $18</div>
+        </article>
+
+        <article class="card">
+          <div class="card-meta">
+            <span>Real Estate Developer</span>
+            <span>Nov 2024</span>
+          </div>
+          <p class="card-type">Type: Residential Real Estate</p>
+          <h3 class="card-title">Lead qualification architecture rebuild</h3>
+          <p class="card-desc">
+            <strong>Before:</strong> High volume inquiries, low qualification for premium inventory.<br />
+            <strong>After:</strong> New ad messaging and funnel routing improved lead intent quality.
+          </p>
+          <div class="card-stats">Result: +210% qualified inquiries</div>
+        </article>
+
+        <article class="card">
+          <div class="card-meta">
+            <span>Online Education Platform</span>
+            <span>Mar 2025</span>
+          </div>
+          <p class="card-type">Type: EdTech</p>
+          <h3 class="card-title">SEO + retargeting for trial-to-paid growth</h3>
+          <p class="card-desc">
+            <strong>Before:</strong> Trial signups were flat and paid conversion lagged by cohort.<br />
+            <strong>After:</strong> Content clusters and retargeting sequences improved trial activation.
+          </p>
+          <div class="card-stats">Result: +168% trial-to-paid conversion</div>
+        </article>
+
+        <article class="card">
+          <div class="card-meta">
+            <span>Home Services Network</span>
+            <span>Jul 2025</span>
+          </div>
+          <p class="card-type">Type: Local Services</p>
+          <h3 class="card-title">Integrated demand capture across 12 cities</h3>
+          <p class="card-desc">
+            <strong>Before:</strong> Fragmented campaigns and duplicate keywords across city accounts.<br />
+            <strong>After:</strong> Unified account structure and local SEO pages improved lead consistency.
+          </p>
+          <div class="card-stats">Result: +124% organic leads and -36% CPL</div>
         </article>
       </div>
+
+      <h2 class="section-title" id="audit">Request Audit</h2>
+      <section class="audit-section">
+        <form id="audit-form" class="audit-form" novalidate>
+          <label>
+            Full Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Work Email
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Website URL
+            <input type="url" name="website" placeholder="https://" required />
+          </label>
+          <label>
+            Monthly Marketing Budget
+            <select name="budget" required>
+              <option value="">Select budget</option>
+              <option>Up to $2,000</option>
+              <option>$2,000 - $5,000</option>
+              <option>$5,000 - $15,000</option>
+              <option>$15,000+</option>
+            </select>
+          </label>
+          <label>
+            Primary Goal
+            <select name="goal" required>
+              <option value="">Select goal</option>
+              <option>More qualified leads</option>
+              <option>Lower CPL</option>
+              <option>Higher ROAS</option>
+              <option>Top SEO rankings</option>
+            </select>
+          </label>
+          <label class="full">
+            Notes
+            <textarea name="notes" rows="4" placeholder="Niche, geo, growth target"></textarea>
+          </label>
+          <label class="consent">
+            <input type="checkbox" name="consent" required />
+            I agree to the processing of my data for audit and strategy communication.
+          </label>
+
+          <button type="submit">Request Audit</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
 
       <footer class="footer" id="contacts">
         <div>(c) <span id="current-year"></span> JPMF Co.</div>

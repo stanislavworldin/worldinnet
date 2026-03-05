@@ -92,7 +92,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   background-color: var(--border-color);
   gap: 1px;
   border-bottom: 1px solid var(--border-color);
@@ -129,12 +129,25 @@ body {
   letter-spacing: -0.5px;
 }
 
+.card-type {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
 .card-desc {
   font-size: 15px;
   line-height: 1.5;
   color: #444;
   margin: 0;
   flex-grow: 1;
+}
+
+.card-desc strong {
+  color: #111;
+  font-weight: 600;
 }
 
 .card-stats {
@@ -146,17 +159,84 @@ body {
   padding-left: 15px;
 }
 
-.card-placeholder {
-  background-color: #f9f9f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.audit-section {
+  border-bottom: 1px solid var(--border-color);
 }
 
-.card-placeholder p {
-  color: #888;
+.audit-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 32px 40px 40px;
+}
+
+.audit-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: #222;
+}
+
+.audit-form input,
+.audit-form select,
+.audit-form textarea {
+  width: 100%;
+  border: 1px solid #cccccc;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+}
+
+.audit-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.audit-form .full,
+.audit-form .consent,
+.audit-form button,
+.audit-form .form-status {
+  grid-column: 1 / -1;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #555;
+  font-size: 13px;
+}
+
+.consent input {
+  width: auto;
+  margin-top: 3px;
+}
+
+.audit-form button {
+  justify-self: start;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 13px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.audit-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.form-status {
   margin: 0;
-  font-size: 16px;
+  min-height: 20px;
+  font-size: 13px;
+  color: #555;
 }
 
 .footer {
@@ -205,6 +285,11 @@ body {
 
   .card {
     min-height: 250px;
+    padding: 28px 24px;
+  }
+
+  .audit-form {
+    grid-template-columns: 1fr;
     padding: 28px 24px;
   }
 
