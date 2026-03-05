@@ -1,6 +1,7 @@
 const currentYear = document.getElementById('current-year');
 const auditForm = document.getElementById('audit-form');
 const serviceCards = document.querySelectorAll('.service-card[data-service]');
+const servicePreviewButtons = document.querySelectorAll('.card-open-btn');
 const serviceModal = document.getElementById('service-modal');
 const serviceModalClose = document.getElementById('service-modal-close');
 const serviceModalKicker = document.getElementById('service-modal-kicker');
@@ -99,6 +100,19 @@ serviceCards.forEach((card) => {
       const serviceKey = card.getAttribute('data-service') || '';
       openServiceModal(serviceKey);
     }
+  });
+});
+
+servicePreviewButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const card = button.closest('.service-card[data-service]');
+    if (!card) {
+      return;
+    }
+
+    const serviceKey = card.getAttribute('data-service') || '';
+    openServiceModal(serviceKey);
   });
 });
 
