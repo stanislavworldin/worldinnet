@@ -112,6 +112,15 @@ body {
   background-color: var(--hover-bg);
 }
 
+.service-card {
+  position: relative;
+  outline: none;
+}
+
+.service-card:focus-visible {
+  box-shadow: inset 0 0 0 2px #000;
+}
+
 .card-meta {
   font-size: 13px;
   color: var(--text-muted);
@@ -157,6 +166,14 @@ body {
   color: var(--text-color);
   border-left: 2px solid var(--accent);
   padding-left: 15px;
+}
+
+.card-open {
+  margin: 18px 0 0;
+  font-size: 12px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .audit-section {
@@ -271,6 +288,84 @@ body {
   text-decoration: none;
 }
 
+.service-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.service-modal.hidden {
+  display: none;
+}
+
+.service-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.service-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: min(86vh, 820px);
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  padding: 26px;
+}
+
+.service-modal-close {
+  border: 1px solid #000;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.service-modal-kicker {
+  margin: 18px 0 6px;
+  color: #7a7a7a;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.service-modal-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+
+.service-modal-section {
+  margin-top: 18px;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 14px;
+}
+
+.service-modal-section h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.service-modal-section p {
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
 @media (max-width: 900px) {
   .header {
     padding: 24px;
@@ -311,5 +406,13 @@ body {
 
   .footer {
     padding: 28px 24px;
+  }
+
+  .service-modal-dialog {
+    padding: 20px;
+  }
+
+  .service-modal-title {
+    font-size: 26px;
   }
 }
