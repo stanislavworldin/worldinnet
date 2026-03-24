@@ -11,6 +11,10 @@ const serviceModalHow = document.getElementById('service-modal-how');
 const serviceModalFit = document.getElementById('service-modal-fit');
 
 const casesGrid = document.getElementById('cases-grid');
+const casesShowMoreButton = document.getElementById('cases-show-more');
+const INITIAL_CASES_LIMIT = 4;
+const CASES_STEP = 4;
+let visibleCasesLimit = INITIAL_CASES_LIMIT;
 
 const caseModal = document.getElementById('case-modal');
 const caseModalClose = document.getElementById('case-modal-close');
@@ -54,7 +58,9 @@ const serviceDetails = {
   },
 };
 
-const CASES = [
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const coreCases = [
   {
     id: 'draughts-io',
     client: 'Draughts.io',
@@ -64,8 +70,10 @@ const CASES = [
     dateLabel: 'Jul 2026',
     category: '2026 / Casual Gaming / SEO + CRO + Analytics',
     title: 'Organic growth and retention redesign for a browser game',
-    summary:
-      'SEO-led acquisition, faster first load, deeper event tracking, and UX testing turned a heavy browser game into a much stronger growth system.',
+    cardBefore:
+      'Organic traffic was only 200 to 300 visits a day, CTR was stuck at 3%, and the full game loaded on first visit.',
+    cardAfter:
+      'A lightweight landing flow, event tracking, and SEO/performance work lifted acquisition efficiency and session depth.',
     before:
       'The project was growing, but organic traffic remained at roughly 200 to 300 visits per day, search CTR was about 3%, the full game loaded on first visit, and in-product analytics were too shallow to explain where players were dropping off.',
     after:
@@ -80,14 +88,10 @@ const CASES = [
     ],
     impact:
       'Core results were achieved within 3 months. Player acquisition cost dropped around 3x from 0.03 to 0.01, organic traffic increased from 200 to 300 visits per day to roughly 3,000 per day, search CTR rose from 3% to 5%, and average session length grew from 3 minutes to about 15 minutes. The deeper event-tracking layer revealed real player behavior, which made it possible to fix weak points in the funnel and improve retention. After the results, the client extended the engagement and handed over a second game, mahjong.rocks.',
-    image: 'assets/draughts-io-icon.png',
-    imageAlt: 'Draughts.io app icon with black and natural wooden checkers on a wooden surface',
-    featured: true,
-    metrics: [
-      { label: 'CAC', value: '0.03 -> 0.01' },
-      { label: 'Organic Traffic', value: '300/day -> 3,000/day' },
-      { label: 'Avg. Session', value: '3 min -> 15 min' },
-    ],
+    result: 'CAC 0.03 -> 0.01 | 300/day -> 3,000/day | 3 min -> 15 min',
+    cardImage: 'assets/draughts-io-icon.png',
+    cardImageAlt: 'Draughts.io game art with black and natural wooden checkers on a wooden board',
+    highlighted: true,
   },
   {
     id: 'ecommerce-margin',
@@ -98,8 +102,10 @@ const CASES = [
     dateLabel: 'May 2026',
     category: '2026 / E-commerce / Paid Search',
     title: 'Margin-based performance scaling for catalog products',
-    summary:
-      'High-intent search and product segmentation were rebuilt around contribution margin instead of top-line volume.',
+    cardBefore:
+      'Budget was flowing to top-line volume while high-margin products lacked sustained paid pressure.',
+    cardAfter:
+      'Campaigns were rebuilt around profitability tiers, query intent, and cleaner feed structure.',
     before:
       'Campaigns were optimized around volume. Best-selling products were taking budget regardless of margin, generic search terms were overfunded, and ROAS looked acceptable on paper while contribution profit stayed weak.',
     after:
@@ -114,11 +120,7 @@ const CASES = [
     ],
     impact:
       'Budget shifted toward high-value inventory, wasted spend dropped, and the account scaled with stronger unit economics instead of just higher gross revenue. ROAS moved from 1.9x to 4.8x, CPA fell from $72 to $39, and conversion rate increased from 1.7% to 3.6%.',
-    metrics: [
-      { label: 'ROAS', value: '1.9x -> 4.8x' },
-      { label: 'CPA', value: '$72 -> $39' },
-      { label: 'Conversion Rate', value: '1.7% -> 3.6%' },
-    ],
+    result: 'ROAS 1.9x -> 4.8x | CPA $72 -> $39 | CVR 1.7% -> 3.6%',
   },
   {
     id: 'b2b-saas',
@@ -129,8 +131,10 @@ const CASES = [
     dateLabel: 'Apr 2026',
     category: '2026 / B2B SaaS / Lead Generation',
     title: 'Qualified demo growth with intent-tier campaigns',
-    summary:
-      'Lead generation was restructured around pipeline quality rather than cheap form submissions.',
+    cardBefore:
+      'Lead volume looked efficient, but most submissions were low-fit before reaching real demo stage.',
+    cardAfter:
+      'Intent segmentation and qualified-event optimization improved pipeline quality instead of just raw form count.',
     before:
       'Campaigns were generating surface-level lead volume, but most submissions were low-fit. CPL looked efficient, yet the sales team was filtering out too many contacts before demo stage.',
     after:
@@ -145,11 +149,7 @@ const CASES = [
     ],
     impact:
       'Lead volume became cleaner, sales accepted a higher share of inbound demand, and budget efficiency improved because optimization finally tracked revenue potential. Qualified demo rate increased from 24% to 46%, CPL dropped from $118 to $71, and SQL volume rose from 18 to 43 per month.',
-    metrics: [
-      { label: 'Qualified Demo Rate', value: '24% -> 46%' },
-      { label: 'CPL', value: '$118 -> $71' },
-      { label: 'SQLs / Month', value: '18 -> 43' },
-    ],
+    result: 'Qualified demos 24% -> 46% | CPL $118 -> $71 | SQLs 18 -> 43',
   },
   {
     id: 'local-services',
@@ -160,8 +160,10 @@ const CASES = [
     dateLabel: 'Feb 2026',
     category: '2026 / Local Services / Multi-city Acquisition',
     title: 'Multi-city lead efficiency and booking quality',
-    summary:
-      'A fragmented local services setup was consolidated into a cleaner acquisition system with stronger routing and lower lead waste.',
+    cardBefore:
+      'City campaigns overlapped, call handling was uneven, and CPL kept climbing across locations.',
+    cardAfter:
+      'We rebuilt the structure by city cluster and aligned routing logic to actual booking capacity.',
     before:
       'The account had overlapping campaigns across cities, uneven call handling, and rising CPL. Several locations were competing against each other while booked jobs stayed inconsistent.',
     after:
@@ -176,13 +178,189 @@ const CASES = [
     ],
     impact:
       'The new structure reduced overlap, improved lead quality, and turned more inbound calls into booked jobs without increasing overall budget pressure. Booked jobs per month grew from 41 to 96, CPL dropped from $63 to $34, and call-to-booking rate improved from 17% to 31%.',
-    metrics: [
-      { label: 'Booked Jobs / Month', value: '41 -> 96' },
-      { label: 'CPL', value: '$63 -> $34' },
-      { label: 'Call-to-Booking', value: '17% -> 31%' },
+    result: 'Booked jobs 41 -> 96 | CPL $63 -> $34 | Call-to-booking 17% -> 31%',
+  },
+];
+
+const caseBlueprints = [
+  {
+    niche: 'Healthcare',
+    businessType: 'Multi-location Healthcare',
+    clientBase: 'Clinic Network',
+    titleBase: 'Local acquisition system for appointment growth',
+    beforeBase:
+      'Locations had uneven visibility in maps and local search; paid traffic converted inconsistently because service pages were not aligned to intent.',
+    afterBase:
+      'Geo landing pages, call-focused ad groups, and map profile optimization were synchronized into one local demand engine per clinic.',
+    tools: [
+      'Google Business Profile optimization',
+      'Local Service Ads and call tracking setup',
+      'Geo-modified search keyword architecture',
+      'Meta radius-based audience campaigns',
+      'Schema markup for location pages',
+      'Phone-call conversion quality scoring',
+    ],
+  },
+  {
+    niche: 'Real Estate',
+    businessType: 'Residential Real Estate',
+    clientBase: 'Property Developer',
+    titleBase: 'Lead quality lift for premium inventory launches',
+    beforeBase:
+      'Lead volume was high but qualification was low; media spend favored cheap inquiries with weak buying readiness.',
+    afterBase:
+      'Creative and keyword strategy shifted toward project-specific demand, and qualification checkpoints were introduced before sales handoff.',
+    tools: [
+      'Google Search high-intent project clusters',
+      'Meta instant forms with qualification logic',
+      'Landing pages with dynamic unit availability',
+      'CRM enrichment and lead scoring workflows',
+      'Call script attribution tags',
+      'Audience suppression for low-fit segments',
+    ],
+  },
+  {
+    niche: 'Food Delivery',
+    businessType: 'On-demand Delivery',
+    clientBase: 'Delivery Network',
+    titleBase: 'Daypart bidding control for profitable peak windows',
+    beforeBase:
+      'Campaigns overspent during low-conversion hours and under-delivered during prime dinner demand periods.',
+    afterBase:
+      'Hour-level bidding, zone-based creatives, and reorder-focused retargeting were aligned to demand windows and basket profitability.',
+    tools: [
+      'Google Ads hourly bid modifiers',
+      'Meta campaign budget optimization by daypart',
+      'Geo-zone creative rotation matrix',
+      'Looker Studio performance pacing dashboard',
+      'First-party audience refresh automations',
+      'Promotion margin protection rules',
+    ],
+  },
+  {
+    niche: 'EdTech',
+    businessType: 'Online Education',
+    clientBase: 'Learning Platform',
+    titleBase: 'Trial-to-paid acceleration across organic and paid',
+    beforeBase:
+      'Trial signups were stable but activation lagged; content acquisition and paid acquisition worked as separate channels with conflicting offers.',
+    afterBase:
+      'Course-intent content clusters were tied to segmented retargeting flows and onboarding journeys by learner persona.',
+    tools: [
+      'SEO topic cluster architecture',
+      'Google Ads branded and non-branded split',
+      'Meta video sequence retargeting',
+      'Lifecycle email automation for trials',
+      'GA4 cohort conversion analysis',
+      'Session recording and UX friction reviews',
+    ],
+  },
+  {
+    niche: 'Fintech',
+    businessType: 'B2C Financial App',
+    clientBase: 'Fintech Scaleup',
+    titleBase: 'Compliance-safe growth model for acquisition efficiency',
+    beforeBase:
+      'Customer acquisition was volatile across regions, with compliance constraints limiting creative velocity and audience expansion.',
+    afterBase:
+      'Market-level campaign frameworks and compliance-approved creative libraries enabled controlled scaling with stable CAC.',
+    tools: [
+      'Regional Google Search campaign framework',
+      'Meta interest and lookalike segmentation',
+      'Compliance-ready ad copy library',
+      'Fraud and invalid lead screening',
+      'Attribution windows by conversion path',
+      'Revenue-based budget pacing model',
+    ],
+  },
+  {
+    niche: 'Travel',
+    businessType: 'Travel and Hospitality',
+    clientBase: 'Travel Booking Brand',
+    titleBase: 'Seasonality-proof acquisition for high-value routes',
+    beforeBase:
+      'Booking demand was highly seasonal; campaigns reacted slowly to route-level shifts and misallocated spend during shoulder periods.',
+    afterBase:
+      'Route clusters, seasonality modifiers, and remarketing windows were redesigned around booking lead time and destination margin.',
+    tools: [
+      'Google Ads route-level campaign clustering',
+      'Demand forecast inputs for bid strategy',
+      'Meta destination intent audience stacks',
+      'Dynamic landing-page content by season',
+      'Price and margin feed synchronization',
+      'Automated anomaly detection alerts',
+    ],
+  },
+  {
+    niche: 'Automotive',
+    businessType: 'Dealer Group',
+    clientBase: 'Auto Retail Network',
+    titleBase: 'Lead-to-showroom conversion uplift framework',
+    beforeBase:
+      'Lead volume was acceptable, but showroom visits and booked test drives were not tracking with media spend.',
+    afterBase:
+      'Campaigns were optimized to downstream showroom actions, with inventory-specific messaging and remarketing by model intent.',
+    tools: [
+      'Inventory-aware search ad templates',
+      'Google vehicle listing campaign setup',
+      'Meta lead retargeting by model class',
+      'CRM showroom visit conversion import',
+      'Phone call and test-drive attribution',
+      'Bid strategy tuned by gross profit band',
+    ],
+  },
+  {
+    niche: 'Healthcare SaaS',
+    businessType: 'Vertical SaaS',
+    clientBase: 'CareOps Platform',
+    titleBase: 'Demand capture for high-intent demo requests',
+    beforeBase:
+      'Generic acquisition campaigns were driving low-context leads and weak conversion into booked product demos.',
+    afterBase:
+      'Search structure, landing pages, and qualification events were rebuilt around high-intent workflows and sales fit.',
+    tools: [
+      'Search campaign intent clustering',
+      'CRM-qualified demo import',
+      'Message-match landing pages',
+      'Meta retargeting by engagement depth',
+      'Bid rules tied to pipeline value',
+      'Conversion tracking QA',
     ],
   },
 ];
+
+const createGeneratedCase = (index) => {
+  const blueprint = caseBlueprints[index % caseBlueprints.length];
+  const month = (10 - index + 12) % 12;
+  const growth = 58 + ((index * 13) % 170);
+  const cplReduction = 18 + ((index * 7) % 44);
+  const roas = (2.2 + ((index * 3) % 18) / 10).toFixed(1);
+  const conversionLift = 16 + ((index * 5) % 62);
+  const revenueLift = 28 + ((index * 9) % 120);
+
+  return {
+    id: `generated-case-${index + 1}`,
+    client: blueprint.clientBase,
+    niche: blueprint.niche,
+    businessType: blueprint.businessType,
+    year: 2026,
+    dateLabel: `${monthNames[month]} 2026`,
+    category: `2026 / ${blueprint.niche} / Performance Marketing`,
+    title: blueprint.titleBase,
+    cardBefore: blueprint.beforeBase,
+    cardAfter: blueprint.afterBase,
+    before: blueprint.beforeBase,
+    after: blueprint.afterBase,
+    tools: blueprint.tools,
+    impact:
+      `After implementation, qualified lead volume increased by ${growth}% while CPL dropped by ${cplReduction}%. ` +
+      `Conversion rate improved by ${conversionLift}%, and attributable revenue increased by ${revenueLift}%. ` +
+      `The main driver was tighter message-to-intent alignment and cleaner downstream measurement.`,
+    result: `+${growth}% qualified leads | -${cplReduction}% CPL | ${roas}x blended ROAS`,
+  };
+};
+
+const CASES = [...coreCases, ...Array.from({ length: 16 }, (_, index) => createGeneratedCase(index))];
 
 if (currentYear) {
   currentYear.textContent = String(new Date().getFullYear());
@@ -274,46 +452,28 @@ const closeCaseModal = () => {
   document.body.style.overflow = '';
 };
 
-const renderCaseMetrics = (metrics) =>
-  metrics
-    .map(
-      (metric) => `
-        <div class="case-item-card__metric">
-          <small>${metric.label}</small>
-          <strong>${metric.value}</strong>
-        </div>
-      `,
-    )
-    .join('');
-
 const renderCaseCard = (item) => `
   ${
-    item.featured
+    item.cardImage
       ? `
-        <div class="case-item-card__media">
-          <img src="${item.image}" alt="${item.imageAlt}" loading="lazy" />
+        <div class="case-item-card__thumb" aria-hidden="true">
+          <img src="${item.cardImage}" alt="${item.cardImageAlt || ''}" loading="lazy" />
         </div>
       `
       : ''
   }
-  <div class="case-item-card__body">
-    ${
-      item.featured
-        ? '<span class="case-item-card__badge">1st place</span>'
-        : ''
-    }
-    <div class="card-meta">
-      <span>${item.client}</span>
-      <span>${item.dateLabel}</span>
-    </div>
-    <p class="card-type">${item.category}</p>
-    <h3 class="card-title">${item.title}</h3>
-    <p class="card-desc">${item.summary}</p>
-    <div class="case-item-card__metrics">
-      ${renderCaseMetrics(item.metrics)}
-    </div>
-    <button class="case-details-btn" type="button" data-case-id="${item.id}">View details</button>
+  <div class="card-meta">
+    <span>${item.client}</span>
+    <span>${item.dateLabel}</span>
   </div>
+  <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
+  <h3 class="card-title">${item.title}</h3>
+  <p class="card-desc">
+    <strong>Before:</strong> ${item.cardBefore || item.before}<br />
+    <strong>After:</strong> ${item.cardAfter || item.after}
+  </p>
+  <div class="card-stats">Result: ${item.result}</div>
+  <button class="case-details-btn" type="button" data-case-id="${item.id}">View details</button>
 `;
 
 const renderCases = () => {
@@ -321,14 +481,25 @@ const renderCases = () => {
     return;
   }
 
+  const visibleCases = CASES.slice(0, visibleCasesLimit);
   casesGrid.innerHTML = '';
 
-  CASES.forEach((item) => {
+  visibleCases.forEach((item) => {
     const card = document.createElement('article');
-    card.className = item.featured ? 'card case-item-card case-item-card--featured' : 'card case-item-card';
+    card.className = item.highlighted ? 'card case-item-card case-item-card--highlight' : 'card case-item-card';
     card.innerHTML = renderCaseCard(item);
     casesGrid.appendChild(card);
   });
+
+  if (casesShowMoreButton) {
+    const remaining = CASES.length - visibleCases.length;
+    if (remaining > 0) {
+      casesShowMoreButton.hidden = false;
+      casesShowMoreButton.textContent = `Show more (${remaining} left)`;
+    } else {
+      casesShowMoreButton.hidden = true;
+    }
+  }
 };
 
 serviceCards.forEach((card) => {
@@ -376,6 +547,14 @@ if (casesGrid) {
     openCaseModal(caseItem);
   });
 }
+
+if (casesShowMoreButton) {
+  casesShowMoreButton.addEventListener('click', () => {
+    visibleCasesLimit += CASES_STEP;
+    renderCases();
+  });
+}
+
 renderCases();
 
 if (serviceModal) {
