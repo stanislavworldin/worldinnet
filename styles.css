@@ -282,10 +282,30 @@ body {
   flex-grow: 0;
 }
 
+.case-item-card__header--with-thumb {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 16px;
+  align-items: start;
+}
+
+.case-item-card__intro {
+  min-width: 0;
+}
+
+.case-item-card__intro .card-meta {
+  margin-bottom: 12px;
+}
+
+.case-item-card__intro .card-type {
+  margin-bottom: 10px;
+}
+
+.case-item-card__intro .card-title {
+  margin-bottom: 0;
+}
+
 .case-item-card__thumb {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   width: 92px;
   height: 92px;
   overflow: hidden;
@@ -307,14 +327,6 @@ body {
 
 .case-item-card--highlight:hover {
   background: #f8eeb6;
-}
-
-.case-item-card--highlight .card-meta,
-.case-item-card--highlight .card-type,
-.case-item-card--highlight .card-title,
-.case-item-card--highlight .card-desc,
-.case-item-card--highlight .card-stats {
-  padding-right: 108px;
 }
 
 .case-details-btn {
@@ -615,16 +627,11 @@ body {
   .case-item-card__thumb {
     width: 78px;
     height: 78px;
-    top: 16px;
-    right: 16px;
   }
 
-  .case-item-card--highlight .card-meta,
-  .case-item-card--highlight .card-type,
-  .case-item-card--highlight .card-title,
-  .case-item-card--highlight .card-desc,
-  .case-item-card--highlight .card-stats {
-    padding-right: 88px;
+  .case-item-card__header--with-thumb {
+    grid-template-columns: minmax(0, 1fr) 78px;
+    gap: 12px;
   }
 
   .audit-form {

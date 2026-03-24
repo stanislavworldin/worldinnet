@@ -456,18 +456,29 @@ const renderCaseCard = (item) => `
   ${
     item.cardImage
       ? `
-        <div class="case-item-card__thumb" aria-hidden="true">
-          <img src="${item.cardImage}" alt="${item.cardImageAlt || ''}" loading="lazy" />
+        <div class="case-item-card__header case-item-card__header--with-thumb">
+          <div class="case-item-card__intro">
+            <div class="card-meta">
+              <span>${item.client}</span>
+              <span>${item.dateLabel}</span>
+            </div>
+            <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
+            <h3 class="card-title">${item.title}</h3>
+          </div>
+          <div class="case-item-card__thumb" aria-hidden="true">
+            <img src="${item.cardImage}" alt="${item.cardImageAlt || ''}" loading="lazy" />
+          </div>
         </div>
       `
-      : ''
+      : `
+        <div class="card-meta">
+          <span>${item.client}</span>
+          <span>${item.dateLabel}</span>
+        </div>
+        <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
+        <h3 class="card-title">${item.title}</h3>
+      `
   }
-  <div class="card-meta">
-    <span>${item.client}</span>
-    <span>${item.dateLabel}</span>
-  </div>
-  <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
-  <h3 class="card-title">${item.title}</h3>
   <p class="card-desc">
     <strong>Before:</strong> ${item.cardBefore || item.before}<br />
     <strong>After:</strong> ${item.cardAfter || item.after}
