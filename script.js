@@ -64,6 +64,7 @@ const coreCases = [
   {
     id: 'draughts-io',
     client: 'Draughts.io',
+    url: 'https://draughts.io',
     niche: 'Casual Gaming',
     businessType: 'Browser Game',
     year: 2026,
@@ -459,7 +460,7 @@ const renderCaseCard = (item) => `
         <div class="case-item-card__header case-item-card__header--with-thumb">
           <div class="case-item-card__intro">
             <div class="card-meta">
-              <span>${item.client}</span>
+              ${item.url ? `<a class="card-meta__link" href="${item.url}">${item.client}</a>` : `<span>${item.client}</span>`}
               <span>${item.dateLabel}</span>
             </div>
             <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
@@ -472,7 +473,7 @@ const renderCaseCard = (item) => `
       `
       : `
         <div class="card-meta">
-          <span>${item.client}</span>
+          ${item.url ? `<a class="card-meta__link" href="${item.url}">${item.client}</a>` : `<span>${item.client}</span>`}
           <span>${item.dateLabel}</span>
         </div>
         <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
