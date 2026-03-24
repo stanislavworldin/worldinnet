@@ -109,6 +109,7 @@ body {
   background-color: transparent;
   gap: 18px;
   padding: 18px 40px 24px;
+  border-bottom: none;
 }
 
 .card {
@@ -146,12 +147,12 @@ body {
 }
 
 .card-meta__link {
-  color: inherit;
+  color: #1d4ed8;
   text-decoration: none;
 }
 
 .card-meta__link:hover {
-  color: var(--accent);
+  color: #1e3a8a;
 }
 
 .card-title {
