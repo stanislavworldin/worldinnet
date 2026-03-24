@@ -258,6 +258,8 @@ body {
 }
 
 .cases-actions {
+  display: flex;
+  justify-content: center;
   border-bottom: 1px solid var(--border-color);
   padding: 18px 40px 26px;
 }

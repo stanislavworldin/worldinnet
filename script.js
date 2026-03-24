@@ -59,6 +59,7 @@ const serviceDetails = {
 };
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const GENERATED_CASES_TOTAL = 16;
 
 const coreCases = [
   {
@@ -361,7 +362,9 @@ const createGeneratedCase = (index) => {
   };
 };
 
-const CASES = [...coreCases, ...Array.from({ length: 16 }, (_, index) => createGeneratedCase(index))];
+const generatedCases = Array.from({ length: GENERATED_CASES_TOTAL }, (_, index) => createGeneratedCase(index));
+const TOTAL_CASES_POOL = coreCases.length + generatedCases.length;
+const CASES = [...coreCases, ...generatedCases];
 
 if (currentYear) {
   currentYear.textContent = String(new Date().getFullYear());
@@ -503,13 +506,17 @@ const renderCases = () => {
     casesGrid.appendChild(card);
   });
 
+  const remaining = TOTAL_CASES_POOL - visibleCases.length;
   if (casesShowMoreButton) {
-    const remaining = CASES.length - visibleCases.length;
     if (remaining > 0) {
       casesShowMoreButton.hidden = false;
+      casesShowMoreButton.removeAttribute('hidden');
+      casesShowMoreButton.style.display = 'inline-flex';
       casesShowMoreButton.textContent = `Show more (${remaining} left)`;
     } else {
       casesShowMoreButton.hidden = true;
+      casesShowMoreButton.setAttribute('hidden', '');
+      casesShowMoreButton.style.display = 'none';
     }
   }
 };
