@@ -464,12 +464,12 @@ const renderCaseCard = (item) => `
               <span>${item.dateLabel}</span>
             </div>
             <p class="card-type">Type: ${item.businessType} | Niche: ${item.niche}</p>
-            <h3 class="card-title">${item.title}</h3>
           </div>
           <div class="case-item-card__thumb" aria-hidden="true">
             <img src="${item.cardImage}" alt="${item.cardImageAlt || ''}" loading="lazy" />
           </div>
         </div>
+        <h3 class="card-title">${item.title}</h3>
       `
       : `
         <div class="card-meta">
