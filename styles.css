@@ -104,6 +104,12 @@ body {
   padding: 18px 40px 24px;
 }
 
+.cases-grid {
+  background-color: transparent;
+  gap: 18px;
+  padding: 18px 40px 24px;
+}
+
 .card {
   background-color: var(--bg-color);
   padding: 40px;
@@ -265,10 +271,97 @@ body {
 
 .case-item-card {
   cursor: default;
+  min-height: 100%;
+  border: 1px solid var(--border-color);
+}
+
+.case-item-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.case-item-card__badge {
+  align-self: flex-start;
+  margin-bottom: 16px;
+  padding: 6px 10px;
+  background: #111;
+  color: #f5d94e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
 }
 
 .case-item-card .card-desc {
   flex-grow: 0;
+}
+
+.case-item-card__metrics {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+}
+
+.case-item-card__metric {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.case-item-card__metric small {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.case-item-card__metric strong {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.case-item-card--featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.88fr) minmax(0, 1.12fr);
+  gap: 24px;
+  padding: 24px;
+  background: #f5d94e;
+  border-color: #d3b119;
+}
+
+.case-item-card--featured:hover {
+  background: #efd244;
+}
+
+.case-item-card__media {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.case-item-card__media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.case-item-card--featured .card-meta span,
+.case-item-card--featured .card-type,
+.case-item-card--featured .card-desc,
+.case-item-card--featured .case-item-card__metric small {
+  color: #5f4d06;
+}
+
+.case-item-card--featured .case-item-card__metrics {
+  border-top-color: rgba(17, 17, 17, 0.14);
 }
 
 .case-details-btn {
@@ -543,6 +636,11 @@ body {
     padding: 14px 24px 22px;
   }
 
+  .cases-grid {
+    gap: 14px;
+    padding: 14px 24px 22px;
+  }
+
   .cases-toolbar {
     grid-template-columns: 1fr;
   }
@@ -558,6 +656,21 @@ body {
   .card {
     min-height: 250px;
     padding: 28px 24px;
+  }
+
+  .case-item-card--featured {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .case-item-card__metric {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-item-card__metric strong {
+    text-align: left;
   }
 
   .audit-form {
